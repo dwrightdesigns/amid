@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="App">
       <h1>Hello Team AMID!</h1>
-      {/* <Timer /> */}
+      <Timer />
     </div>
   );
 }
