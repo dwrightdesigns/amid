@@ -18,8 +18,6 @@ function App() {
           <Timer />
         </Route>
       </Switch>
-      <h1>Hello Team AMID!</h1>
-      <Timer />
     </div>
   );
 }
