@@ -2,13 +2,22 @@ import React from "react";
 import "./App.scss";
 import { Switch, Route } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
+import Header from "./components/Header";
 import Timer from "./components/timer/Timer";
+import Landing from "./components/LandingPage";
 
 function App() {
   return (
     <div className="App">
-      <h1>Hello Team AMID!</h1>
-      {/* <Timer /> */}
+      <Header />
+      <Switch>
+        <Route to="/">
+          <Landing />
+        </Route>
+        <Route to="/timer">
+          <Timer />
+        </Route>
+      </Switch>
     </div>
   );
 }
