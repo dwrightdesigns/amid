@@ -5,8 +5,10 @@
   --dark-color: rgba(27, 27, 27, 1);
   --comp-color: rgba(138, 215, 168, 1);
   --light-color: rgba(229, 229, 229, 1);
+  --landing-bg: rgba(229, 229, 229, 1);
   --toggleOn-color: rgba(148, 255, 166, 1);
   --toggleOff-color: rgba(255, 148, 148, 1);
+  --gradient-color: linear-gradient(147.74deg, #91B6BC 9.26%, #86EB9C 100.48%);
 }
 
 * {
@@ -24,12 +26,12 @@ img {
 }
 
 h1 {
-  font-size: 3rem;
-  font-weight: 800;
+  font-size: 2.5rem;
+  font-weight: 700;
 }
 
 h2 {
-  font-size: 2.125rem;
+  font-size: 1.85rem;
   font-weight: 400;
 }
 
@@ -57,4 +59,38 @@ p {
 cite {
   font-size: 0.8125rem;
   font-weight: 400;
+}
+
+.dark-btn {
+  color: var(--light-color);
+  background-color: var(--dark-color);
+}
+
+.light-btn {
+  color: var(--dark-color);
+  background-color: var(--light-color);
+}
+
+.gradient-btn {
+  color: var(--dark-color);
+  background: var(--gradient-color);
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 80px;;
+  margin: 0.5rem;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 8px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  transition: all .2s ease-in-out;
+
+  &:hover {
+    opacity: 90%;
+    transform: scale(1.1);
+  }
 }

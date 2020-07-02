@@ -1,20 +1,33 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom"
 
 const StyledHeader = styled.header`
-  color: var(--dark-color);
-  font-size: 1rem;
-  img {
-    width: 130px;
+  display: flex;
+  align-items: center;
+  padding: 1.5rem;
+  width: 100%;
+  background-color: var(--landing-bg);
+
+  i {
+    font-size: 1.3rem;
+    color: var(--dark-color);
+  }
+
+  div {
+    margin: auto;
+    img {
+      width: 130px;
+    }
   }
 `;
 
 function Header() {
   return (
     <StyledHeader>
-      <i class="fas fa-cog"></i>
+      <Link to="/settings"><i class="fas fa-cog"></i></Link>
       <div>
-        <img src="/logo512.png" alt="amid logo" />
+        <a href="/"><img src="/logo512.png" alt="amid logo" /></a> 
       </div>
     </StyledHeader>
   );

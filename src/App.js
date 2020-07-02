@@ -11,10 +11,13 @@ function App() {
     <div className="App">
       <Header />
       <Switch>
-        <Route to="/">
+        <Route exact path="/">
           <Landing />
         </Route>
-        <Route to="/timer">
+        <Route path="/timer">
+          <Timer />
+        </Route>
+        <Route path="/breath">
           <Timer />
         </Route>
       </Switch>
