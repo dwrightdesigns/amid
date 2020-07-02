@@ -1,5 +1,4 @@
 import React from "react";
-import BreakOptionInput from "./BreakOptionInput";
 import TaskTextInput from "./TaskTextInput";
 import TimerButton from "./TimerButton";
 import DigitsTimer from "./DigitsTimer";
@@ -8,10 +7,8 @@ function Timer() {
   return (
     <>
       <DigitsTimer />
-      <BreakOptionInput />
       <TaskTextInput />
       <SkipButton />
-
     </>
   );
 }

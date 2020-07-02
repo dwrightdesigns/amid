@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Header from "./components/Header";
 import Timer from "./components/timer/Timer";
 import Landing from "./components/LandingPage";
+import ChoicePage from "./components/breakChoice/ChoicePage";
 
 function App() {
   return (
