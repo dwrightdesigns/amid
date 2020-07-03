@@ -6,6 +6,7 @@ import Header from "./components/Header";
 import Timer from "./components/timer/Timer";
 import Landing from "./components/LandingPage";
 import ChoicePage from "./components/breakChoice/ChoicePage";
+import Settings from "./components/Settings";
 
 function App() {
   return (
@@ -20,6 +21,9 @@ function App() {
         </Route>
         <Route path="/breath">
           <Timer />
+        </Route>
+        <Route>
+          <Settings/>
         </Route>
       </Switch>
     </div>
