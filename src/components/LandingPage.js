@@ -4,18 +4,34 @@ import { Link } from "react-router-dom";
 
 const StyledHero = styled.section`
   display: flex;
+  flex-direction: column;
   justify-content: space-evenly;
   color: var(--dark-color);
   align-items: center;
   width: 100%;
-  padding: 10rem 8rem;
   background: url(/img/amidoverlay.png), var(--gradient-color);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  @media screen and (min-width: 768px) {
+    padding: 5rem 4rem;
+  }
+  @media screen and (min-width: 1024px) {
+    padding: 10rem 8rem;
+    flex-direction: row;
+    margin: auto;
+  }
 
   .about-amid {
-    width: 80%;
+    // width: 80%;
+    margin: 1.2rem;
+
+    h1 {
+      font-size: 2rem;
+      @media screen and (min-width: 768px) {
+        font-size: 2.5rem;
+      }
+    }
 
     h4 {
       max-width: 600px;
@@ -26,34 +42,67 @@ const StyledHero = styled.section`
   .begin-buttons {
     display: flex;
     justify-content: center;
-    margin: auto;
+    margin: 1.2rem auto;
     flex-direction: column;
+    @media screen and (min-width: 768px) {
+      flex-direction: row;
+    }
+    @media screen and (min-width: 1024px) {
+      flex-direction: column;
+    }
+    @media screen and (min-width: 1366px) {
+      margin: 0;
+    }
   }
 `;
 
 const StyledBreak = styled.section`
   display: flex;
   justify-content: center;
+  flex-direction: column;
   margin: auto;
   color: var(--dark-color);
   align-items: center;
   width: 100%;
-  padding: 4rem 8rem;
+  // padding: 4rem 8rem;
   background-color: var(--landing-bg);
+  text-align: center;
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    text-align: left;
+    padding: 4rem 8rem;
+  }
 
   .about-break {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    width: 80%;
+    margin: 2.5rem;
+    // width: 80%;
+    @media screen and (min-width: 1366px) {
+     margin: auto;
+    }
 
     .button {
-      margin: 0;
+      margin: auto;
+      @media screen and (min-width: 768px) {
+        margin: 0;
+      }
+    }
+
+    h1 {
+      font-size: 2rem;
+      @media screen and (min-width: 768px) {
+        font-size: 2.5rem;
+      }
     }
 
     h4 {
-      width: 307px;
-      margin: 3rem 0 3rem 0;
+      max-width: 307px;
+      margin: 2rem auto;
+      @media screen and (min-width: 768px) {
+        margin: 2rem 0;
+      }
     }
   }
 
@@ -62,8 +111,12 @@ const StyledBreak = styled.section`
     justify-content: center;
     margin: auto;
     img {
+      display: none;
       width: 280px;
       box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      @media screen and (min-width: 768px) {
+        display: block;
+      }
     }
   }
 `;
@@ -77,29 +130,54 @@ const StyledMethod = styled.section`
     url(img/beach.jpg);
   background-position: center;
   background-size: cover;
-  padding: 10rem 8rem;
   transform: scaleX(-1);
+  @media screen and (min-width: 768px) {
+    padding: 5rem 4rem;
+  }
+  @media screen and (min-width: 1024) {
+    padding: 10rem 8rem;
+  }
 
   .method-content {
     transform: scaleX(-1);
+    padding: 2rem;
+
+    h1 {
+      font-size: 2rem;
+      @media screen and (min-width: 768px) {
+        font-size: 2.5rem;
+      }
+    }
+
     h4 {
       max-width: 700px;
-      margin: 4rem 0 0 0;
+      margin: 2rem 0 0 0;
+      
     }
   }
 `;
 
 const StyledStart = styled.section`
   background-color: var(--landing-bg);
-  padding: 4rem 8rem;
+  padding: 2rem;
   text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  
+  @media screen and (min-width: 768px) {
+    padding: 4rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+    @media screen and (min-width: 768px) {
+      font-size: 2.5rem;
+    }
+  }
+
   h4 {
-      max-width: 658px;
-      margin: 4rem auto;
+    max-width: 658px;
+    margin: 4rem auto;
   }
 
   .button {
@@ -132,8 +210,8 @@ function Landing() {
         <div className="about-break">
           <h1>Use Your Breaks More Effectively</h1>
           <h4>
-            Choose a break that works best for you. <br /> Mix it up to keep
-            your day on track!
+            Choose a break that works best for you. Mix it up to keep your day
+            on track!
           </h4>
           <Link className="dark-btn button" to="/break">
             Choose Your Break
