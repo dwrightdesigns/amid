@@ -1,5 +1,4 @@
 import React from "react";
-// import TaskTextInput from "./TaskTextInput";
 import TimerButton from "./TimerButton.js";
 import DigitsTimer from "./DigitsTimer";
 import SkipButton from "./SkipButton";
