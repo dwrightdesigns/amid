@@ -11,6 +11,7 @@ const CardFrame = styled.div`
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 8px;
   margin: 12px;
+  cursor: pointer;
   :hover {
     width: 304px;
     height: 129px;

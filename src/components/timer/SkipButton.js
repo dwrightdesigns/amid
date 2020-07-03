@@ -6,10 +6,9 @@ const SkipButtonStyle = styled.button`
     display: inline-block;
     border: none;
     padding: .5rem .5rem;
-    margin: 0;
     text-decoration: none;
-    background: $light-color;
-    color: $dark-color;
+    background: var(--light-color);
+    color: var(--dark-color);
     font-family: sans-serif;
     font-size: 1.0625rem;
     font-weight: 400;
@@ -22,8 +21,8 @@ const SkipButtonStyle = styled.button`
     -moz-appearance: none;
     
     &:hover {
-        background: $dark-color;
-        color: $light-color;
+        background: var(--dark-color);
+        color: var(--light-color);
     }
 
 `;
