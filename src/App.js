@@ -8,7 +8,6 @@ import Landing from "./components/LandingPage";
 import ChoicePage from "./components/breakChoice/ChoicePage";
 import Settings from "./components/Settings";
 
-
 function App() {
   return (
     <div className="App">
@@ -25,8 +24,9 @@ function App() {
         </Route>
         <Route path="/settings">
           <Settings />
+        </Route>
         <Route to="/break">
-          <ChoicePage/>
+          <ChoicePage />
         </Route>
       </Switch>
     </div>
