@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import styled from "styled-components";
 
 const TimerButtonStyle = styled.button`
@@ -34,8 +34,9 @@ text-align: center;
 width: 5rem;
 color: $dark-color;
 `
+class TimerButton extends Component {
 
-function TimerButton() {
+render() {
     return (
         <>
             <TimerButtonStyle>
@@ -45,5 +46,5 @@ function TimerButton() {
         </>
     )
 }
-
+}
 export default TimerButton;
