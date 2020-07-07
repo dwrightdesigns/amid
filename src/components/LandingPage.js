@@ -80,7 +80,7 @@ const StyledBreak = styled.section`
     margin: 2.5rem;
     // width: 80%;
     @media screen and (min-width: 1366px) {
-     margin: auto;
+      margin: auto;
     }
 
     .button {
@@ -130,7 +130,7 @@ const StyledMethod = styled.section`
     url(img/beach.jpg);
   background-position: center;
   background-size: cover;
-  transform: scaleX(-1);
+  // transform: scaleX(-1);
   @media screen and (min-width: 768px) {
     padding: 5rem 4rem;
   }
@@ -139,7 +139,7 @@ const StyledMethod = styled.section`
   }
 
   .method-content {
-    transform: scaleX(-1);
+    // transform: scaleX(-1);
     padding: 2rem;
 
     h1 {
@@ -152,7 +152,6 @@ const StyledMethod = styled.section`
     h4 {
       max-width: 700px;
       margin: 2rem 0 0 0;
-      
     }
   }
 `;
@@ -185,9 +184,13 @@ const StyledStart = styled.section`
   }
 `;
 
+const StyledPage = styled.div`
+  padding-top: 10vh;
+`
+
 function Landing() {
   return (
-    <>
+    <StyledPage>
       <StyledHero>
         <div className="about-amid">
           <h1>Amid is...</h1>
@@ -242,7 +245,7 @@ function Landing() {
           Get Started!
         </Link>
       </StyledStart>
-    </>
+    </StyledPage>
   );
 }
 

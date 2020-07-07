@@ -1,31 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import Settings from "./Settings";
 
 const StyledHeader = styled.header`
   display: flex;
   align-items: center;
-  // padding: 1.5rem;
   height: 10vh;
   width: 100%;
+  position: fixed;
   justify-content: space-between;
   background-color: var(--landing-bg);
+  z-index: 999;
 
   .settings {
     font-size: 1.3rem;
     color: var(--dark-color);
     margin: 0 0 0 1rem;
-    @media screen and (min-width: 768px) {
-      position: absolute;
-    }
+    cursor: pointer;
+  }
+  .settings-container {
+    margin: 0 1rem 0 0;
   }
 
-  div {
+  .logo-container {
     margin: 0 1rem 0 0;
     @media screen and (min-width: 768px) {
       margin: auto;
     }
-    img {
+    .logo {
       width: 70px;
       @media screen and (min-width: 375px) and (orientation: portrait) {
         width: 130px;
@@ -37,19 +40,25 @@ const StyledHeader = styled.header`
   }
 `;
 
-function Header() {
+const Header = () => {
+  const [open, setOpen] = useState(false);
   return (
-    <StyledHeader>
-      <Link className="settings" to="/settings">
-        <i className="fas fa-cog"></i>
-      </Link>
-      <div>
-        <a href="/">
-          <img src="/logo512.png" alt="amid logo" />
-        </a>
-      </div>
-    </StyledHeader>
+    <>
+      <StyledHeader>
+        <div className="settings-container">
+          <div className="settings" open={open} onClick={() => setOpen(!open)}>
+            <i className={`fas ${open ? "fa-times" : "fa-cog"}`}></i>
+          </div>
+        </div>
+        <div className="logo-container">
+          <a href="/">
+            <img className="logo" src="/logo512.png" alt="amid logo" />
+          </a>
+        </div>
+      </StyledHeader>
+      <Settings open={open} setOpen={() => setOpen(false)} />
+    </>
   );
-}
+};
 
 export default Header;
