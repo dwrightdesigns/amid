@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import "../App.scss";
 import styled from "styled-components";
+import { Link, withRouter } from "react-router-dom";
 
 const StyledLabel = styled.label`
-    height: ;
-    margin: 1rem;
+    margin: .5rem;
     border-radius: 4px;
     
 .toggle {
@@ -82,27 +82,49 @@ const StyledLabel = styled.label`
 const StyledWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 100vw;
+  padding: 1rem;
+  transform-origin: top;
+  transition: transform 0.5s ease-in-out;
+  transform: ${({ open }) => (open ? "scale(1)" : "scale(0)")};
   height: 90vh;
   align-items: center;
   justify-content: center;
-  background-color: var(--landing-bg);
+  background-color: var(--settings-bg);
+  z-index: 988;
+  position: fixed;
+  top: 10vh;
 
   cite {
-      margin: 1rem;
+    margin: 0.5rem;
   }
 `;
 
 const StyledDuration = styled.section`
   display: flex;
+  width: 100%;
+  max-width: 400px;
+  justify-content: center;
   text-align: center;
+
+  h5 {
+    font-size: 0.8rem;
+  }
+
+  .left {
+    margin: 0 0.5rem 0 0;
+    width: 100%;
+  }
+  .right {
+    margin: 0 0 0 0.5rem;
+    width: 100%;
+  }
 `;
 
 const StyledTime = styled.div`
   background-color: var(--dark-color);
-  width: 190px;
-  margin: 0.5rem 10px;
-  padding: 1.5rem 2rem;
+  margin: 0.5rem auto;
+  padding: 0.5rem 1.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -111,7 +133,7 @@ const StyledTime = styled.div`
 
   input {
     height: 46px;
-    width: 90px;
+    width: 80px;
     font-size: 2rem;
     text-align: center;
   }
@@ -123,6 +145,7 @@ const StyledTime = styled.div`
 
   p {
     margin: 0.5rem 0 0 0;
+    font-size: 0.8rem;
     color: var(--light-color);
   }
 `;
@@ -135,21 +158,31 @@ const StyledToggle = styled.section`
   height: 50px;
   color: var(--light-color);
   border-radius: 8px;
-  width: 400px;
-  margin: 0.5rem;
+  width: 100%;
+  max-width: 400px;
+  margin: 0.5rem 1rem;
+  padding: 0.5rem;
 
   h5 {
-    margin: 0 0 0 1rem;
+    font-size: 0.8rem;
+    margin: 0 0 0 0.5rem;
   }
 `;
 
 const StyledButtons = styled.section`
   color: var(--light-color);
   display: flex;
-  
+  width: 100%;
+  max-width: 400px;
+
+  div {
+    width: 100%;
+    margin: 0.5rem;
+  }
+
   .btn {
-    margin: .5rem 10px;
-    width: 190px;
+    margin: 0.5rem 0 0 0;
+    width: 100%;
     height: 90px;
     display: flex;
     flex-direction: column;
@@ -157,66 +190,79 @@ const StyledButtons = styled.section`
     justify-content: space-evenly;
     cursor: pointer;
 
-    i {
-        font-size: 2rem;
+    h5 {
+      font-size: 0.8rem;
     }
+
+    i {
+      font-size: 1.5rem;
+    }
+  }
+
+  .left {
+    margin: 0 0.5rem 0 0;
+  }
+  .right {
+    margin: 0 0 0 0.5rem;
   }
 `;
 
-class Settings extends Component {
-  render() {
-    return (
-      <StyledWrapper>
-        <StyledDuration>
-          <div>
-            <h5>Break Duration</h5>
-            <StyledTime className="time-input">
-              <input type="number" />
-              <p>minutes</p>
-            </StyledTime>
+const Settings = ({ open }) => {
+  return (
+    <StyledWrapper open={open}>
+      <StyledDuration>
+        <div className="left">
+          <h5>Break Duration</h5>
+          <StyledTime>
+            <input type="number" />
+            <p>minutes</p>
+          </StyledTime>
+        </div>
+        <div className="right">
+          <h5>Focus Duration</h5>
+          <StyledTime>
+            <input type="number" />
+            <p>minutes</p>
+          </StyledTime>
+        </div>
+      </StyledDuration>
+      <StyledToggle>
+        <h5>Auto Start Break</h5>
+        <StyledLabel>
+          <div className="toggle">
+            <input type="checkbox" className="checkbox" />
+            <div className="knobs"></div>
+            <div className="layer"></div>
           </div>
-          <div>
-            <h5>Focus Duration</h5>
-            <StyledTime className="time-input">
-              <input type="number" />
-              <p>minutes</p>
-            </StyledTime>
+        </StyledLabel>
+      </StyledToggle>
+      <StyledToggle>
+        <h5>Play Chime When Timer Ends</h5>
+        <StyledLabel>
+          <div className="toggle">
+            <input type="checkbox" className="checkbox" />
+            <div className="knobs"></div>
+            <div className="layer"></div>
           </div>
-        </StyledDuration>
-        <StyledToggle>
-          <h5>Auto Start Break</h5>
-          <StyledLabel>
-            <div className="toggle">
-              <input type="checkbox" className="checkbox" />
-              <div className="knobs"></div>
-              <div className="layer"></div>
-            </div>
-          </StyledLabel>
-        </StyledToggle>
-        <StyledToggle>
-          <h5>Play Chime When Timer Ends</h5>
-          <StyledLabel>
-            <div className="toggle">
-              <input type="checkbox" className="checkbox" />
-              <div className="knobs"></div>
-              <div className="layer"></div>
-            </div>
-          </StyledLabel>
-        </StyledToggle>
-        <StyledButtons>
-          <div className="dark-btn button btn">
+        </StyledLabel>
+      </StyledToggle>
+      <StyledButtons>
+        <div className="left">
+          <Link to="/" className="dark-btn button btn">
             <i class="fas fa-question"></i>
             <h5>how to use</h5>
-          </div>
-          <div className="dark-btn button btn">
+          </Link>
+        </div>
+        <div className="right">
+          <Link to="/about" className="dark-btn button btn">
             <i class="fas fa-info"></i>
             <h5>about</h5>
-          </div>
-        </StyledButtons>
-        <cite>made by team amid</cite>
-      </StyledWrapper>
-    );
-  }
-}
+          </Link>
+        </div>
+      </StyledButtons>
+      <cite>made by team amid</cite>
+    </StyledWrapper>
+  );
+};
 
-export default Settings;
+export default withRouter(Settings);
