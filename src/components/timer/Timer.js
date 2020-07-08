@@ -6,26 +6,32 @@ import TaskTextArea from "./TaskTextArea";
 import styled from "styled-components";
 import BreathExCard from "./BreathExCard";
 
+
 const TimerFlex = styled.div`
-display: flex;
-align-items: center;
-flex-direction: column;
-background: var(--main-color);
-height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background: var(--main-color);
+  height: 100vh;
 `;
 
-function Timer() {
-  return (
-    
-    <TimerFlex>
-      <DigitsTimer />
-      <TimerButton/>
-      <BreathExCard/>
-      <TaskTextArea/>
-      <SkipButton />
-    </TimerFlex>
+class Timer extends React.Component {
+  state = {
+    focusDuration: 50,
+    breakDuration: 10,
+    breakChoice: "BreathingEx",
+  };
 
-  );
+  render() {
+    return (
+      <TimerFlex>
+        <DigitsTimer />
+        <TimerButton />
+        <TaskTextArea />
+        <SkipButton />
+      </TimerFlex>
+    );
+  }
 }
 
 export default Timer;
