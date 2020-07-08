@@ -4,6 +4,7 @@ import DigitsTimer from "./DigitsTimer";
 import SkipButton from "./SkipButton";
 import TaskTextArea from "./TaskTextArea";
 import styled from "styled-components";
+import BreathExCard from "./BreathExCard";
 
 const TimerFlex = styled.div`
 display: flex;
@@ -19,6 +20,7 @@ function Timer() {
     <TimerFlex>
       <DigitsTimer />
       <TimerButton/>
+      <BreathExCard/>
       <TaskTextArea/>
       <SkipButton />
     </TimerFlex>
