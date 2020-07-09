@@ -21,10 +21,11 @@ const BreatheVariant = {
     scale: 1
   },
   visible: {
-    scale: .6,
+    scale: [1, .6, 1],
     transition: {
-      duration: 4,
-      yoyo: Infinity
+      duration: 16,
+      times: [0, .3, 1],
+      loop: Infinity,
     }
   }
 }
