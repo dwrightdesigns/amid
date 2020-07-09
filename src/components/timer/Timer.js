@@ -4,7 +4,8 @@ import DigitsTimer from "./DigitsTimer";
 import SkipButton from "./SkipButton";
 import TaskTextArea from "./TaskTextArea";
 import styled from "styled-components";
-import BreathingEx from "../BreathingEx.js";
+import BreathExCard from "./BreathExCard";
+
 
 const TimerFlex = styled.div`
   display: flex;
