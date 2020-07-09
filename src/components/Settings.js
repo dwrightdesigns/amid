@@ -1,7 +1,109 @@
-import React, { Component } from "react";
+import React from "react";
 import "../App.scss";
 import styled from "styled-components";
 import { Link, withRouter } from "react-router-dom";
+
+const Settings = ({ open, ...props }) => {
+
+  function decreaseCounter() {
+    if (props.breakDuration === 1) {
+      return;
+    }
+    props.decreaseBreak();
+  }
+
+  function increaseCounter() {
+    if (props.breakDuration === 180) {
+      return;
+    }
+    props.increaseBreak();
+  }
+
+  function decreaseFocus() {
+    if (props.focusDuration === 1) {
+      return;
+    }
+    props.decreaseFocus();
+  }
+
+  function increaseFocus() {
+    if (props.focusDuration === 180) {
+      return;
+    }
+    props.increaseFocus();
+  }
+  return (
+    <StyledWrapper open={open}>
+      <StyledDuration>
+        <div className="left">
+          <h5>Break Duration</h5>
+          <StyledTime>
+            <div className="duration">
+              <button onClick={decreaseCounter}>
+                <i class="fas fa-caret-down"></i>
+              </button>
+              <h4>{props.breakDuration}</h4>
+              <button onClick={increaseCounter}>
+                <i class="fas fa-caret-up"></i>
+              </button>
+            </div>
+            <p>minutes</p>
+          </StyledTime>
+        </div>
+        <div className="right">
+          <h5>Focus Duration</h5>
+          <StyledTime>
+            <div className="duration">
+              <button onClick={decreaseFocus}>
+                <i class="fas fa-caret-down"></i>
+              </button>
+              <h4>{props.focusDuration}</h4>
+              <button onClick={increaseFocus}>
+                <i class="fas fa-caret-up"></i>
+              </button>
+            </div>
+            <p>minutes</p>
+          </StyledTime>
+        </div>
+      </StyledDuration>
+      <StyledToggle>
+        <h5>Auto Start Break</h5>
+        <StyledLabel>
+          <div className="toggle">
+            <input type="checkbox" className="checkbox" />
+            <div className="knobs"></div>
+            <div className="layer"></div>
+          </div>
+        </StyledLabel>
+      </StyledToggle>
+      <StyledToggle>
+        <h5>Play Chime When Timer Ends</h5>
+        <StyledLabel>
+          <div className="toggle">
+            <input type="checkbox" className="checkbox" />
+            <div className="knobs"></div>
+            <div className="layer"></div>
+          </div>
+        </StyledLabel>
+      </StyledToggle>
+      <StyledButtons>
+        <div className="left">
+          <Link to="/" className="dark-btn button btn">
+            <i class="fas fa-question"></i>
+            <h5>how to use</h5>
+          </Link>
+        </div>
+        <div className="right">
+          <Link to="/about" className="dark-btn button btn">
+            <i class="fas fa-info"></i>
+            <h5>about</h5>
+          </Link>
+        </div>
+      </StyledButtons>
+      <cite>made by team amid</cite>
+    </StyledWrapper>
+  );
+};
 
 const StyledLabel = styled.label`
     margin: .5rem;
@@ -94,6 +196,7 @@ const StyledWrapper = styled.div`
   z-index: 988;
   position: fixed;
   top: 10vh;
+  backdrop-filter: blur(5px);
 
   cite {
     margin: 0.5rem;
@@ -130,6 +233,35 @@ const StyledTime = styled.div`
   align-items: center;
   justify-content: center;
   border-radius: 8px;
+
+  .duration {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    h4 {
+      color: var(--light-color);
+    }
+
+    button {
+      padding: 5px;
+      margin: 0 12px;
+      height: 25px;
+      background-color: var(l--light-color);
+      border: none;
+      outline: none;
+      color: var(--dark-color);
+      cursor: pointer;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+
+    p {
+      margin: 0 1rem 0 1rem;
+    }
+  }
 
   input {
     height: 46px;
@@ -206,63 +338,5 @@ const StyledButtons = styled.section`
     margin: 0 0 0 0.5rem;
   }
 `;
-
-const Settings = ({ open }) => {
-  return (
-    <StyledWrapper open={open}>
-      <StyledDuration>
-        <div className="left">
-          <h5>Break Duration</h5>
-          <StyledTime>
-            <input type="number" />
-            <p>minutes</p>
-          </StyledTime>
-        </div>
-        <div className="right">
-          <h5>Focus Duration</h5>
-          <StyledTime>
-            <input type="number" />
-            <p>minutes</p>
-          </StyledTime>
-        </div>
-      </StyledDuration>
-      <StyledToggle>
-        <h5>Auto Start Break</h5>
-        <StyledLabel>
-          <div className="toggle">
-            <input type="checkbox" className="checkbox" />
-            <div className="knobs"></div>
-            <div className="layer"></div>
-          </div>
-        </StyledLabel>
-      </StyledToggle>
-      <StyledToggle>
-        <h5>Play Chime When Timer Ends</h5>
-        <StyledLabel>
-          <div className="toggle">
-            <input type="checkbox" className="checkbox" />
-            <div className="knobs"></div>
-            <div className="layer"></div>
-          </div>
-        </StyledLabel>
-      </StyledToggle>
-      <StyledButtons>
-        <div className="left">
-          <Link to="/" className="dark-btn button btn">
-            <i class="fas fa-question"></i>
-            <h5>how to use</h5>
-          </Link>
-        </div>
-        <div className="right">
-          <Link to="/about" className="dark-btn button btn">
-            <i class="fas fa-info"></i>
-            <h5>about</h5>
-          </Link>
-        </div>
-      </StyledButtons>
-      <cite>made by team amid</cite>
-    </StyledWrapper>
-  );
-};
 
 export default withRouter(Settings);
