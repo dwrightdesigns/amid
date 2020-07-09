@@ -27,6 +27,7 @@ class Timer extends React.Component {
       <TimerFlex>
         <DigitsTimer />
         <TimerButton />
+        <BreathExCard/>
         <TaskTextArea />
         <SkipButton />
       </TimerFlex>
