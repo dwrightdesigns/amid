@@ -55,28 +55,29 @@ class TimerButton extends Component {
   }
   render() {
     return (
-    <>
+      <>
         <TimerButtonStyle onClick={this.props.play}>
           {this.props.play === true ? this.props.start : this.props.pause}
         </TimerButtonStyle>
 
-      <svg width={202} height={202} fill="none">
-        <Test
-          d="M101 51c-27.614 0-50 22.386-50 50s22.386 50 50 50 50-22.386 50-50c0-26.438-22-49.5-49-50"
-          stroke="#F2F2F2"
-          strokeWidth={100}
-        />
-        <circle
-          cx={101}
-          cy={101}
-          r={99}
-          stroke="url(#prefix__pattern0)"
-          strokeWidth={3}
-        />
-        <circle cx={101} cy={101} r={99} stroke="#1B1B1B" strokeWidth={4} />
-      </svg>
-    </>
-  );
+        <svg width={202} height={202} fill="none">
+          <Test
+            d="M101 51c-27.614 0-50 22.386-50 50s22.386 50 50 50 50-22.386 50-50c0-26.438-22-49.5-49-50"
+            stroke="#F2F2F2"
+            strokeWidth={100}
+          />
+          <circle
+            cx={101}
+            cy={101}
+            r={99}
+            stroke="url(#prefix__pattern0)"
+            strokeWidth={3}
+          />
+          <circle cx={101} cy={101} r={99} stroke="#1B1B1B" strokeWidth={4} />
+        </svg>
+      </>
+    );
+  }
 }
-  
+
 export default TimerButton;
