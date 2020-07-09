@@ -19,6 +19,7 @@ const SkipButtonStyle = styled.button`
     transform 150ms ease;
     -webkit-appearance: none;
     -moz-appearance: none;
+    outline: none;
     
     &:hover {
         background: var(--dark-color);
@@ -27,10 +28,10 @@ const SkipButtonStyle = styled.button`
 
 `;
 
-function SkipButton() {
+function SkipButton(props) {
       return (
         <div>
-          <SkipButtonStyle>Switch To Focus <i class="fas fa-step-forward"></i> </SkipButtonStyle>
+          <SkipButtonStyle onClick={props.onClick}>{props.isSession ? "Switch to Focus" : "Switch to Break"}<i class="fas fa-step-forward"></i> </SkipButtonStyle>
         </div>
       )
       }

@@ -2,64 +2,34 @@ import React, { Component } from "react";
 import styled from "styled-components";
 
 const DigitsOnTimer = styled.h1`
-margin-top: 7rem;
-margin-bottom: 3rem;
-color: var(--dark-color);`;
-
-const TimerEnd = styled.h1`
-margin-top: 7rem;
-margin-bottom: 3rem;
-color: var(--dark-color);
+  margin-top: 7rem;
+  margin-bottom: 3rem;
+  color: var(--dark-color);
+  text-align: ;
 `;
 
-
-
-class DigitsTimer extends Component {
-
-  state = {
-    minutes: 10,
-    seconds: 0
+class DigitsTimer extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      isSession: true,
+      timerSecond: 0,
+      intervalId: 0,
+    };
   }
-
-  componentDidMount() {
-    this.myInterval = setInterval(() => {
-      const { seconds, minutes } = this.state
-
-      if (seconds > 0) {
-        this.setState(({ seconds }) => ({
-          seconds: seconds - 1
-        }))
-      }
-      if (seconds === 0) {
-        if (minutes === 0) {
-          clearInterval(this.myInterval)
-        } else {
-          this.setState(({ minutes }) => ({
-            minutes: minutes - 1,
-            seconds: 59
-          }))
-        }
-      }
-    }, 1000)
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.myInterval)
-  }
-
   render() {
-
-    const { minutes, seconds } = this.state
-
     return (
       <div>
-        {minutes === 0 && seconds === 0
-          ? <TimerEnd>Times Up!</TimerEnd>
-          : <DigitsOnTimer> {minutes}:{seconds < 10 ? `0${seconds}` : seconds}</DigitsOnTimer>
-        }
+        <DigitsOnTimer>
+          {this.props.timerMinute}:
+          {this.state.timerSecond === 0
+            ? "00"
+            : this.state.timerSecond < 10
+            ? "0" + this.state.timerSecond
+            : this.state.timerSecond}
+        </DigitsOnTimer>
       </div>
-    )
+    );
   }
-
 }
 export default DigitsTimer;
