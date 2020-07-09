@@ -25,9 +25,6 @@ const StyledHeader = styled.header`
 
   .logo-container {
     margin: 0 1rem 0 0;
-    @media screen and (min-width: 768px) {
-      margin: auto;
-    }
     .logo {
       width: 70px;
       @media screen and (min-width: 375px) and (orientation: portrait) {
@@ -40,7 +37,7 @@ const StyledHeader = styled.header`
   }
 `;
 
-const Header = () => {
+const Header = (props) => {
   const [open, setOpen] = useState(false);
   return (
     <>
@@ -56,7 +53,16 @@ const Header = () => {
           </a>
         </div>
       </StyledHeader>
-      <Settings open={open} setOpen={() => setOpen(false)} />
+      <Settings
+        open={open}
+        setOpen={() => setOpen(false)}
+        breakDuration={props.breakDuration}
+        focusDuration={props.focusDuration}
+        increaseBreak={props.increaseBreak}
+        decreaseBreak={props.decreaseBreak}
+        increaseFocus={props.increaseFocus}
+        decreaseFocus={props.decreaseFocus}
+      />
     </>
   );
 };
