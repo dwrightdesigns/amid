@@ -4,8 +4,8 @@ import { Switch, Route } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import Header from "./components/Header";
 import Timer from "./components/timer/Timer";
-import Landing from "./components/LandingPage";
-import ChoicePage from "./components/breakChoice/ChoicePage";
+import Landing from "./LandingPage";
+import ChoicePage from "./components/ChoicePage";
 
 class App extends React.Component {
   constructor(props) {
@@ -100,6 +100,8 @@ class App extends React.Component {
               timerMinute={this.state.timerMinute}
               updateTimerMinute={this.onUpdateTimerMinute}
               toggleInterval={this.onToggleInterval}
+              breakDuration={this.state.breakDuration}
+              focusDuration={this.state.focusDuration}
             />
           </Route>
           <Route path="/breath">

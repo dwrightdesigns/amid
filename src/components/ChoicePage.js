@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import ChoiceCard from "./ChoiceCard.js";
+import { Link } from "react-router-dom";
 
 const PageWrapper = styled.div`
   width: 100%;
@@ -29,8 +29,12 @@ function ChoicePage() {
   return (
     <PageWrapper>
       <Title>How would you like to spend your break?</Title>
-      <ChoiceCard />
-      <ChoiceCard />
+      <Link className="gradient-btn button" to="/timer">
+        Unstructured Break
+      </Link>
+      <Link className="gradient-btn button" to="/timer">
+        Breathing Exercise
+      </Link>
       <Cite>© 2020 amid</Cite>
     </PageWrapper>
   );
