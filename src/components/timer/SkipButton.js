@@ -31,7 +31,7 @@ const SkipButtonStyle = styled.button`
 function SkipButton(props) {
       return (
         <div>
-          <SkipButtonStyle onClick={props.onClick}>{props.isSession ? "Switch to Focus" : "Switch to Break"}<i class="fas fa-step-forward"></i> </SkipButtonStyle>
+          <SkipButtonStyle onClick={props.onClick}>{props.sessionType ? "Switch to Break" : "Switch to Focus"}<i class="fas fa-step-forward"></i> </SkipButtonStyle>
         </div>
       )
       }

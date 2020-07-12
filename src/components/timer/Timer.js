@@ -5,7 +5,7 @@ import SkipButton from "./SkipButton";
 import TaskTextArea from "./TaskTextArea";
 import styled from "styled-components";
 import BreathExCard from "./BreathExCard";
-
+import ChoicePage from "../ChoicePage";
 
 const TimerFlex = styled.div`
   display: flex;
@@ -31,6 +31,8 @@ class Timer extends React.Component {
       timerSecond: 0,
       intervalId: 0,
       action: "",
+      isPlaying: false,
+      sessionType: "focus",
     };
 
     this.play = this.play.bind(this);
@@ -39,16 +41,15 @@ class Timer extends React.Component {
   }
 
   play() {
-    let intervalId = setInterval(this.decreaseTimer, 1000);
-
-    this.setState({
-      intervalId: intervalId,
-    });
+    if (!this.state.isPlaying) {
+      let intervalId = setInterval(this.decreaseTimer, 1000);
+      this.setState({ intervalId: intervalId, isPlaying: true });
+    }
   }
 
   skip() {
     this.setState({
-      isSession: !this.state.isSession,
+      sessionType: this.state.sessionType === "focus" ? "break" : "focus"
     });
   }
 
@@ -88,19 +89,35 @@ class Timer extends React.Component {
 
   render() {
     return (
-      <TimerFlex>
-        <DigitsOnTimer>
-          {this.props.timerMinute}:
-          {this.state.timerSecond === 0
-            ? "00"
-            : this.state.timerSecond < 10
-            ? "0" + this.state.timerSecond
-            : this.state.timerSecond}
-        </DigitsOnTimer>
-        <TimerButton play={this.play} start={this.state.start} />
-        <TaskTextArea />
-        <SkipButton onClick={this.skip} isSession={this.state.isSession} />
-      </TimerFlex>
+      <>
+        {this.state.isSession === false &&
+        this.state.sessionType === "focus" ? (
+          <ChoicePage />
+        ) : (
+          <TimerFlex>
+            <DigitsOnTimer>
+              {this.props.timerMinute}:
+              {this.state.timerSecond === 0
+                ? "00"
+                : this.state.timerSecond < 10
+                ? "0" + this.state.timerSecond
+                : this.state.timerSecond}
+            </DigitsOnTimer>
+            <TimerButton
+              play={this.play}
+              start={this.state.start}
+              timerMinute={
+                this.state.isSession
+                  ? this.props.breakDuration
+                  : this.props.focusDuration
+              }
+              isPlaying={this.state.isPlaying}
+            />
+            <TaskTextArea />
+            <SkipButton onClick={this.skip} sessionType={this.state.sessionType === "focus" ? "Switch to Break" : "Switch to Focus"} />
+          </TimerFlex>
+        )}
+      </>
     );
   }
 }
