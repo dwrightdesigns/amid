@@ -14,6 +14,7 @@ class App extends React.Component {
       focusDuration: 50,
       breakDuration: 10,
       timerMinute: 50,
+      currentTimer: "focus",
     };
 
     this.onIncreaseBreakLength = this.onIncreaseBreakLength.bind(this);
@@ -22,6 +23,12 @@ class App extends React.Component {
     this.onDecreaseFocusLength = this.onDecreaseFocusLength.bind(this);
     this.onToggleInterval = this.onToggleInterval.bind(this);
     this.onUpdateTimerMinute = this.onUpdateTimerMinute.bind(this);
+    this.handleChangeTimer = this.handleChangeTimer.bind(this);
+  }
+
+  handleChangeTimer(activity) {
+    this.setState({ currentTimer: activity });
+    // console.log("changed state to:", activity);
   }
 
   onIncreaseBreakLength() {
@@ -93,30 +100,32 @@ class App extends React.Component {
         />
         <Switch>
           <Route exact path="/">
-            <Landing />
+            <Landing onChangeTimer={this.handleChangeTimer} />
           </Route>
-          <main>
-            <Route path="/timer">
-              <Timer
-                timerMinute={this.state.timerMinute}
-                updateTimerMinute={this.onUpdateTimerMinute}
-                toggleInterval={this.onToggleInterval}
-                breakDuration={this.state.breakDuration}
-                focusDuration={this.state.focusDuration}
-              />
-            </Route>
-            <Route path="/breath">
-              <Timer
-                timerMinute={this.state.timerMinute}
-                breakTimer={this.state.breakDuration}
-                updateTimerMinute={this.onUpdateTimerMinute}
-                toggleInterval={this.onToggleInterval}
-              />
-            </Route>
-            <Route path="/break">
-              <ChoicePage />
-            </Route>
-          </main>
+
+          <Route path="/timer">
+            <Timer
+              currentTimer={this.state.currentTimer}
+              onChangeTimer={this.handleChangeTimer}
+              timerMinute={this.state.timerMinute}
+              updateTimerMinute={this.onUpdateTimerMinute}
+              toggleInterval={this.onToggleInterval}
+              breakDuration={this.state.breakDuration}
+              focusDuration={this.state.focusDuration}
+            />
+          </Route>
+          {/* <Route path="/breath">
+            <Timer
+              timerMinute={this.state.timerMinute}
+              breakTimer={this.state.breakDuration}
+              updateTimerMinute={this.onUpdateTimerMinute}
+              toggleInterval={this.onToggleInterval}
+            />
+          </Route> */}
+          <Route path="/break-choice">
+            <ChoicePage onChangeTimer={this.handleChangeTimer} />
+          </Route>
+
         </Switch>
       </div>
     );

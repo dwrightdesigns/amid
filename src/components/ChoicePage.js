@@ -25,14 +25,29 @@ const Cite = styled.cite`
   color: linear-gradient(0deg, #1b1b1b, #1b1b1b), url(amidcopy.png);
 `;
 
-function ChoicePage() {
+function ChoicePage(props) {
+  const handleChangeTimer = (activity) => {
+    props.onChangeTimer(activity);
+  };
   return (
     <PageWrapper>
       <Title>How would you like to spend your break?</Title>
-      <Link className="gradient-btn button" to="/timer">
+      <Link
+        className="gradient-btn button"
+        to="/timer"
+        onClick={() => {
+          handleChangeTimer("unstructured");
+        }}
+      >
         Unstructured Break
       </Link>
-      <Link className="gradient-btn button" to="/timer">
+      <Link
+        className="gradient-btn button"
+        to="/timer"
+        onClick={() => {
+          handleChangeTimer("breathing");
+        }}
+      >
         Breathing Exercise
       </Link>
       <Cite>© 2020 amid</Cite>
