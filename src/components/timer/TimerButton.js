@@ -12,6 +12,7 @@ const Test = styled.path`
 
   animation-name: count;
   animation-direction: linear;
+  // need to add time duration here.
 
   @keyframes count {
     to {
