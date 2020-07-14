@@ -102,6 +102,7 @@ class App extends React.Component {
           <Route exact path="/">
             <Landing onChangeTimer={this.handleChangeTimer} />
           </Route>
+
           <Route path="/timer">
             <Timer
               currentTimer={this.state.currentTimer}
@@ -124,6 +125,7 @@ class App extends React.Component {
           <Route path="/break-choice">
             <ChoicePage onChangeTimer={this.handleChangeTimer} />
           </Route>
+
         </Switch>
       </div>
     );

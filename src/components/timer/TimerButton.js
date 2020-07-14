@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import styled, { keyframes } from "styled-components";
 
+const ButtonContainer = styled.div`
+  margin: 0 0 2rem 0;
+`;
+
 const TimerButtonStyle = styled.svg`
   cursor: pointer;
   outline: none;
@@ -31,7 +35,7 @@ class TimerButton extends Component {
   }
   render() {
     return (
-      <>
+      <ButtonContainer>
         <TimerButtonStyle
           width={202}
           height={202}
@@ -50,7 +54,7 @@ class TimerButton extends Component {
           />
           <circle cx={101} cy={101} r={99} stroke="#1B1B1B" strokeWidth={4} />
         </TimerButtonStyle>
-      </>
+      </ButtonContainer>
     );
   }
 }
