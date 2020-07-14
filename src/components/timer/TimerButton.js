@@ -1,15 +1,19 @@
 import React, { Component } from "react";
 import styled, { keyframes } from "styled-components";
 
+const ButtonContainer = styled.div`
+  margin: 0 0 2rem 0;
+`;
+
 const TimerButtonStyle = styled.svg`
   cursor: pointer;
   outline: none;
-  `;
-  
-  const Test = styled.path`
+`;
+
+const Test = styled.path`
   stroke-dasharray: 315px;
   stroke-dashoffset: 0px;
-  
+
   animation-name: count;
   animation-direction: linear;
 
@@ -18,7 +22,7 @@ const TimerButtonStyle = styled.svg`
       stroke-dashoffset: 315px;
     }
   }
-  
+
   &:hover {
     stroke: var(--dark-color);
   }
@@ -30,7 +34,7 @@ class TimerButton extends Component {
   }
   render() {
     return (
-      <>
+      <ButtonContainer>
         <TimerButtonStyle
           width={202}
           height={202}
@@ -41,11 +45,15 @@ class TimerButton extends Component {
             d="M101 51c-27.614 0-50 22.386-50 50s22.386 50 50 50 50-22.386 50-50c0-26.438-22-50-50-50"
             stroke="#F2F2F2"
             strokeWidth={100}
-            style={{animationDuration: `${this.props.isPlaying ? this.props.timerMinute * 60 : 0}s`}}
+            style={{
+              animationDuration: `${
+                this.props.isPlaying ? this.props.timerMinute * 60 : 0
+              }s`,
+            }}
           />
           <circle cx={101} cy={101} r={99} stroke="#1B1B1B" strokeWidth={4} />
         </TimerButtonStyle>
-      </>
+      </ButtonContainer>
     );
   }
 }

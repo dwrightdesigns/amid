@@ -95,26 +95,28 @@ class App extends React.Component {
           <Route exact path="/">
             <Landing />
           </Route>
-          <Route path="/timer">
-            <Timer
-              timerMinute={this.state.timerMinute}
-              updateTimerMinute={this.onUpdateTimerMinute}
-              toggleInterval={this.onToggleInterval}
-              breakDuration={this.state.breakDuration}
-              focusDuration={this.state.focusDuration}
-            />
-          </Route>
-          <Route path="/breath">
-            <Timer
-              timerMinute={this.state.timerMinute}
-              breakTimer={this.state.breakDuration}
-              updateTimerMinute={this.onUpdateTimerMinute}
-              toggleInterval={this.onToggleInterval}
-            />
-          </Route>
-          <Route path="/break">
-            <ChoicePage />
-          </Route>
+          <main>
+            <Route path="/timer">
+              <Timer
+                timerMinute={this.state.timerMinute}
+                updateTimerMinute={this.onUpdateTimerMinute}
+                toggleInterval={this.onToggleInterval}
+                breakDuration={this.state.breakDuration}
+                focusDuration={this.state.focusDuration}
+              />
+            </Route>
+            <Route path="/breath">
+              <Timer
+                timerMinute={this.state.timerMinute}
+                breakTimer={this.state.breakDuration}
+                updateTimerMinute={this.onUpdateTimerMinute}
+                toggleInterval={this.onToggleInterval}
+              />
+            </Route>
+            <Route path="/break">
+              <ChoicePage />
+            </Route>
+          </main>
         </Switch>
       </div>
     );

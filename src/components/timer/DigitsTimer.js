@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 
 const DigitsOnTimer = styled.h1`
-  margin-top: 7rem;
-  margin-bottom: 3rem;
+  margin: 0 0 3rem 0;
   color: var(--dark-color);
   text-align: ;
 `;
