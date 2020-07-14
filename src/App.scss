@@ -22,6 +22,11 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
+main {
+  padding: 10vh 0 0 0;
+  height: 90vh;
+}
+
 img {
   width: 100%;
 }
@@ -101,4 +106,42 @@ cite {
     opacity: 90%;
     transform: scale(1.1);
   }
+}
+
+.slides {
+  text-align: center;
+
+  .slick-prev, .slick-next {
+    position: absolute;
+    top: 110%;
+  }
+
+  .instruct {
+    background-color: rgba(229, 229, 229, .75);
+    border-radius: 8px;
+    height: 160px;
+    width: 100%;
+    color: var(--dark-color);
+    text-align: center;
+    padding: 1rem;
+
+    p {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      height: 100%;
+      width: 100%;
+      margin: auto;
+      font-size: 1rem;
+    }
+  }
+}
+
+.slick-list {
+  max-width: 300px;
+}
+
+.slick-dots {
+  max-width: 300px;
 }
