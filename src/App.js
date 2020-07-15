@@ -27,6 +27,13 @@ class App extends React.Component {
     this.reduceFocusTimer = this.reduceFocusTimer.bind(this);
     this.stopTimer = this.stopTimer.bind(this);
     this.completeTimer = this.completeTimer.bind(this);
+    this.handleChangeTimer = this.handleChangeTimer.bind(this);
+  }
+
+  handleChangeTimer(activity) {
+    this.setState({ currentTimer: activity });
+    // console.log("changed state to:", activity);
+
   }
 
   setFocusSet(newFocusSet) {
@@ -104,7 +111,30 @@ class App extends React.Component {
         />
         <Switch>
           <Route exact path="/">
-            <Landing />
+            <Landing onChangeTimer={this.handleChangeTimer} />
+          </Route>
+
+          <Route path="/timer">
+            <Timer
+              currentTimer={this.state.currentTimer}
+              onChangeTimer={this.handleChangeTimer}
+              timerMinute={this.state.timerMinute}
+              updateTimerMinute={this.onUpdateTimerMinute}
+              toggleInterval={this.onToggleInterval}
+              breakDuration={this.state.breakDuration}
+              focusDuration={this.state.focusDuration}
+            />
+          </Route>
+          {/* <Route path="/breath">
+            <Timer
+              timerMinute={this.state.timerMinute}
+              breakTimer={this.state.breakDuration}
+              updateTimerMinute={this.onUpdateTimerMinute}
+              toggleInterval={this.onToggleInterval}
+            />
+          </Route> */}
+          <Route path="/break-choice">
+            <ChoicePage onChangeTimer={this.handleChangeTimer} />
           </Route>
           <main>
             <Route path="/timer">

@@ -20,6 +20,7 @@ const Test = styled.path`
   animation-direction: linear;
   animation-duration: 60s;
 
+
   @keyframes count {
     to {
       stroke-dashoffset: 315px;

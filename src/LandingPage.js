@@ -186,9 +186,12 @@ const StyledStart = styled.section`
 
 const StyledPage = styled.div`
   padding-top: 10vh;
-`
+`;
 
-function Landing() {
+function Landing(props) {
+  const handleChangeTimer = (activity) => {
+    props.onChangeTimer(activity);
+  };
   return (
     <StyledPage>
       <StyledHero>
@@ -201,10 +204,22 @@ function Landing() {
           </h4>
         </div>
         <div className="begin-buttons">
-          <Link className="dark-btn button" to="/timer">
+          <Link
+            className="dark-btn button"
+            to="/timer"
+            onClick={() => {
+              handleChangeTimer("focus");
+            }}
+          >
             Begin with Focus Timer
           </Link>
-          <Link className="light-btn button" to="/breath">
+          <Link
+            className="light-btn button"
+            to="/timer"
+            onClick={() => {
+              handleChangeTimer("breathing");
+            }}
+          >
             Begin with Breathing Exercise
           </Link>
         </div>
@@ -216,7 +231,7 @@ function Landing() {
             Choose a break that works best for you. Mix it up to keep your day
             on track!
           </h4>
-          <Link className="dark-btn button" to="/break">
+          <Link className="dark-btn button" to="/break-choice">
             Choose Your Break
           </Link>
         </div>
@@ -241,7 +256,13 @@ function Landing() {
           your focus throughout the day and can reduce stress levels. We could
           all use a little more of that.
         </h4>
-        <Link className="gradient-btn button" to="/timer">
+        <Link
+          className="gradient-btn button"
+          to="/timer"
+          onClick={() => {
+            handleChangeTimer("focus");
+          }}
+        >
           Get Started!
         </Link>
       </StyledStart>
