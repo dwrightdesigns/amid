@@ -56,12 +56,11 @@ const Header = (props) => {
       <Settings
         open={open}
         setOpen={() => setOpen(false)}
-        breakDuration={props.breakDuration}
-        focusDuration={props.focusDuration}
-        increaseBreak={props.increaseBreak}
-        decreaseBreak={props.decreaseBreak}
-        increaseFocus={props.increaseFocus}
-        decreaseFocus={props.decreaseFocus}
+        focusSet={props.focusSet}
+        breakSet={props.breakSet}
+        setFocusSet={props.setFocusSet}
+        setBreakSet={props.setBreakSet}
+        timerState={props.timerState}
       />
     </>
   );

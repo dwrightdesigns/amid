@@ -1,12 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import TimerButton from "./TimerButton.js";
-import DigitsTimer from "./DigitsTimer";
 import SkipButton from "./SkipButton";
 import TaskTextArea from "./TaskTextArea";
 import styled from "styled-components";
-import BreathExCard from "./BreathExCard";
-import ChoicePage from "../ChoicePage";
-import BreathInstruct from "./instructions";
+import * as timerStates from "../../timerStates";
 
 const TimerFlex = styled.div`
   display: flex;
@@ -14,6 +11,10 @@ const TimerFlex = styled.div`
   flex-direction: column;
   background: var(--gradient-color);
   height: 90vh;
+
+  iframe {
+    display: none;
+  }
 `;
 
 const DigitsOnTimer = styled.h1`
@@ -23,127 +24,42 @@ const DigitsOnTimer = styled.h1`
   text-align: ;
 `;
 
+const leftPad = (val) => {
+  if (val < 10) return `0${val}`;
+
+  return `${val}`;
+};
+
 class Timer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      breakChoice: "BreathingEx",
       isSession: true,
-      timerSecond: 0,
-      intervalId: 0,
-      action: "",
-      isPlaying: false,
-      sessionType: "focus",
-      responsive: [
-        {
-          breakpoint: 1024,
-          settings: {
-            slidesToShow: 3,
-            slidesToScroll: 3,
-            infinite: true,
-            dots: true
-          }
-        },
-        {
-          breakpoint: 600,
-          settings: {
-            slidesToShow: 2,
-            slidesToScroll: 2,
-            initialSlide: 2
-          }
-        },
-        {
-          breakpoint: 480,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1
-          }
-        }
-      ]
     };
-
-    this.play = this.play.bind(this);
-    this.decreaseTimer = this.decreaseTimer.bind(this);
-    this.skip = this.skip.bind(this);
-  }
-
-  play() {
-    if (!this.state.isPlaying) {
-      let intervalId = setInterval(this.decreaseTimer, 1000);
-      this.setState({ intervalId: intervalId, isPlaying: true });
-    }
-  }
-
-  skip() {
-    this.setState({
-      sessionType: this.state.sessionType === "focus" ? "break" : "focus"
-    });
-  }
-
-  decreaseTimer() {
-    switch (this.state.timerSecond) {
-      case 0:
-        if (this.props.timerMinute === 0) {
-          if (this.state.isSession) {
-            this.setState({
-              isSession: false,
-            });
-
-            this.props.toggleInterval(this.state.isSession);
-          } else {
-            this.setState({
-              isSession: true,
-            });
-
-            this.props.toggleInterval(this.state.isSession);
-          }
-        } else {
-          this.props.updateTimerMinute();
-          this.setState({
-            timerSecond: 59,
-          });
-        }
-        break;
-      default:
-        this.setState((prevState) => {
-          return {
-            timerSecond: prevState.timerSecond - 1,
-          };
-        });
-        break;
-    }
   }
 
   render() {
     return (
       <>
-        {this.state.isSession === false &&
-        this.state.sessionType === "focus" ? (
-          <ChoicePage />
-        ) : (
-          <TimerFlex>
-            <DigitsOnTimer>
-              {this.props.timerMinute}:
-              {this.state.timerSecond === 0
-                ? "00"
-                : this.state.timerSecond < 10
-                ? "0" + this.state.timerSecond
-                : this.state.timerSecond}
-            </DigitsOnTimer>
-            <TimerButton
-              play={this.play}
-              start={this.state.start}
-              timerMinute={
-                this.state.isSession
-                  ? this.props.breakDuration
-                  : this.props.focusDuration
-              }
-              isPlaying={this.state.isPlaying}
-            />
-            <BreathInstruct/>
-            {/* <TaskTextArea /> */}
-            <SkipButton onClick={this.skip} sessionType={this.state.sessionType === "focus" ? "Switch to Break" : "Switch to Focus"} />
-          </TimerFlex>
+        <TimerFlex>
+          <DigitsOnTimer>
+            {leftPad(this.props.hours.get("hours"))}:
+            {leftPad(this.props.minutes.get("minutes"))}:
+            {leftPad(this.props.seconds.get("seconds"))}
+          </DigitsOnTimer>
+          {this.props.timerState == timerStates.COMPLETE && (
+              <iframe src="/amid-alarm.mp3" allow="autoplay" id="iframeAudio" />
+          )}
+          <TimerButton
+            isPlaying={this.props.isPlaying}
+            startTimer={this.props.startTimer}
+            timerState={this.props.timerState}
+            stopTimer={this.props.stopTimer}
+            resetTimer={this.props.resetTimer}
+          />
+          <TaskTextArea />
+          <SkipButton />
+        </TimerFlex>
         )}
       </>
     );

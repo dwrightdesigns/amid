@@ -1,82 +1,94 @@
 import React from "react";
 import "./App.scss";
+import moment from "moment";
 import { Switch, Route } from "react-router-dom";
-import { AnimatePresence, motion } from "framer-motion";
 import Header from "./components/Header";
 import Timer from "./components/timer/Timer";
 import Landing from "./LandingPage";
 import ChoicePage from "./components/ChoicePage";
+import * as timerStates from "./timerStates";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      focusDuration: 50,
-      breakDuration: 10,
-      timerMinute: 50,
+      focusTime: moment.duration(50, "minutes"),
+      focusSet: moment.duration(50, "minutes"),
+      breakTime: moment.duration(10, "minutes"),
+      breakSet: moment.duration(10, "minutes"),
+      timerState: timerStates.NOT_SET,
+      timer: null,
+      paused: true,
+      isPlaying: false,
     };
-
-    this.onIncreaseBreakLength = this.onIncreaseBreakLength.bind(this);
-    this.onDecreaseBreakLength = this.onDecreaseBreakLength.bind(this);
-    this.onIncreaseFocusLength = this.onIncreaseFocusLength.bind(this);
-    this.onDecreaseFocusLength = this.onDecreaseFocusLength.bind(this);
-    this.onToggleInterval = this.onToggleInterval.bind(this);
-    this.onUpdateTimerMinute = this.onUpdateTimerMinute.bind(this);
+    this.setBreakSet = this.setBreakSet.bind(this);
+    this.setFocusSet = this.setFocusSet.bind(this);
+    this.startTimer = this.startTimer.bind(this);
+    this.reduceFocusTimer = this.reduceFocusTimer.bind(this);
+    this.stopTimer = this.stopTimer.bind(this);
+    this.completeTimer = this.completeTimer.bind(this);
   }
 
-  onIncreaseBreakLength() {
-    this.setState((prevState) => {
-      return {
-        breakDuration: prevState.breakDuration + 1,
-        timerMinute: prevState.breakDuration + 1,
-      };
+  setFocusSet(newFocusSet) {
+    this.setState({
+      focusSet: newFocusSet,
+      focusTime: newFocusSet,
     });
   }
 
-  onDecreaseBreakLength() {
-    this.setState((prevState) => {
-      return {
-        breakDuration: prevState.breakDuration - 1,
-        timerMinute: prevState.breakDuration - 1,
-      };
+  setBreakSet(newBreakSet) {
+    this.setState({
+      breakSet: newBreakSet,
+      breakTime: newBreakSet,
     });
   }
 
-  onIncreaseFocusLength() {
-    this.setState((prevState) => {
-      return {
-        focusDuration: prevState.focusDuration + 1,
-        timerMinute: prevState.focusDuration + 1,
-      };
+  startTimer() {
+    this.setState({
+      timerState: timerStates.RUNNING,
+      timer: setInterval(this.reduceFocusTimer, 1000),
+      paused: false,
     });
   }
 
-  onDecreaseFocusLength() {
-    this.setState((prevState) => {
-      return {
-        focusDuration: prevState.focusDuration - 1,
-        timerMinute: prevState.focusDuration - 1,
-      };
-    });
-  }
-
-  onToggleInterval(isSession) {
-    if (isSession) {
-      this.setState({
-        timerMinute: this.state.focusDuration,
-      });
-    } else {
-      this.setState({
-        timerMinute: this.state.breakDuration,
-      });
+  stopTimer() {
+    if (this.state.timer) {
+      clearInterval(this.state.timer);
     }
+    this.setState({
+      timerState: timerStates.NOT_SET,
+      timer: null,
+      paused: true,
+      isPlaying: true,
+      focusTime: moment.duration(this.state.focusSet),
+    });
   }
 
-  onUpdateTimerMinute() {
-    this.setState((prevState) => {
-      return {
-        timerMinute: prevState.timerMinute - 1,
-      };
+  reduceFocusTimer() {
+    if (
+      this.state.focusTime.get("hours") === 0 &&
+      this.state.focusTime.get("minutes") === 0 &&
+      this.state.focusTime.get("seconds") === 0
+    ) {
+      this.completeTimer();
+      return;
+    }
+    const newTime = moment.duration(this.state.focusTime);
+    newTime.subtract(1, "second");
+
+    this.setState({
+      focusTime: newTime,
+    });
+  }
+
+  completeTimer() {
+    if (this.state.timer) {
+      clearInterval(this.state.timer);
+    }
+
+    this.setState({
+      timerState: timerStates.COMPLETE,
+      timer: null,
     });
   }
 
@@ -84,12 +96,11 @@ class App extends React.Component {
     return (
       <div className="App">
         <Header
-          breakDuration={this.state.breakDuration}
-          focusDuration={this.state.focusDuration}
-          increaseBreak={this.onIncreaseBreakLength}
-          decreaseBreak={this.onDecreaseBreakLength}
-          increaseFocus={this.onIncreaseFocusLength}
-          decreaseFocus={this.onDecreaseFocusLength}
+          focusSet={this.state.focusSet}
+          breakSet={this.state.breakSet}
+          setFocusSet={this.setFocusSet}
+          setBreakSet={this.setBreakSet}
+          timerState={this.state.timerState}
         />
         <Switch>
           <Route exact path="/">
@@ -98,21 +109,23 @@ class App extends React.Component {
           <main>
             <Route path="/timer">
               <Timer
-                timerMinute={this.state.timerMinute}
-                updateTimerMinute={this.onUpdateTimerMinute}
-                toggleInterval={this.onToggleInterval}
-                breakDuration={this.state.breakDuration}
-                focusDuration={this.state.focusDuration}
+                hours={this.state.focusTime}
+                minutes={this.state.focusTime}
+                seconds={this.state.focusTime}
+                startTimer={this.startTimer}
+                stopTimer={this.stopTimer}
+                timerState={this.state.timerState}
+                isPlaying={this.state.isPlaying}
+                completeTimer={this.completeTimer}
               />
             </Route>
-            <Route path="/breath">
+            {/* <Route path="/breath">
               <Timer
-                timerMinute={this.state.timerMinute}
-                breakTimer={this.state.breakDuration}
-                updateTimerMinute={this.onUpdateTimerMinute}
-                toggleInterval={this.onToggleInterval}
+                hours={this.state.breakTime}
+                minutes={this.state.breakTime}
+                seconds={this.state.breakTime}
               />
-            </Route>
+            </Route> */}
             <Route path="/break">
               <ChoicePage />
             </Route>
