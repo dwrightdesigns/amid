@@ -6,6 +6,7 @@ import Header from "./components/Header";
 import Timer from "./components/timer/Timer";
 import Landing from "./LandingPage";
 import ChoicePage from "./components/ChoicePage";
+import About from "./components/About";
 
 class App extends React.Component {
   constructor(props) {
@@ -124,6 +125,9 @@ class App extends React.Component {
           </Route> */}
           <Route path="/break-choice">
             <ChoicePage onChangeTimer={this.handleChangeTimer} />
+          </Route>
+          <Route path="/about">
+            <About />
           </Route>
 
         </Switch>
