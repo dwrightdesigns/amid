@@ -12,6 +12,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      currentTimer: "focus",
       focusTime: moment.duration(50, "minutes"),
       focusSet: moment.duration(50, "minutes"),
       breakTime: moment.duration(10, "minutes"),
@@ -33,7 +34,6 @@ class App extends React.Component {
   handleChangeTimer(activity) {
     this.setState({ currentTimer: activity });
     // console.log("changed state to:", activity);
-
   }
 
   setFocusSet(newFocusSet) {
@@ -113,32 +113,14 @@ class App extends React.Component {
           <Route exact path="/">
             <Landing onChangeTimer={this.handleChangeTimer} />
           </Route>
-
-          <Route path="/timer">
-            <Timer
-              currentTimer={this.state.currentTimer}
-              onChangeTimer={this.handleChangeTimer}
-              timerMinute={this.state.timerMinute}
-              updateTimerMinute={this.onUpdateTimerMinute}
-              toggleInterval={this.onToggleInterval}
-              breakDuration={this.state.breakDuration}
-              focusDuration={this.state.focusDuration}
-            />
-          </Route>
-          {/* <Route path="/breath">
-            <Timer
-              timerMinute={this.state.timerMinute}
-              breakTimer={this.state.breakDuration}
-              updateTimerMinute={this.onUpdateTimerMinute}
-              toggleInterval={this.onToggleInterval}
-            />
-          </Route> */}
           <Route path="/break-choice">
             <ChoicePage onChangeTimer={this.handleChangeTimer} />
           </Route>
           <main>
             <Route path="/timer">
               <Timer
+                currentTimer={this.state.currentTimer}
+                onChangeTimer={this.handleChangeTimer}
                 hours={this.state.focusTime}
                 minutes={this.state.focusTime}
                 seconds={this.state.focusTime}
@@ -148,16 +130,6 @@ class App extends React.Component {
                 isPlaying={this.state.isPlaying}
                 completeTimer={this.completeTimer}
               />
-            </Route>
-            {/* <Route path="/breath">
-              <Timer
-                hours={this.state.breakTime}
-                minutes={this.state.breakTime}
-                seconds={this.state.breakTime}
-              />
-            </Route> */}
-            <Route path="/break">
-              <ChoicePage />
             </Route>
           </main>
         </Switch>
