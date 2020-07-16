@@ -11,7 +11,6 @@ import About from "./components/About";
 
 import * as timerStates from "./timerStates";
 
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -192,30 +191,27 @@ class App extends React.Component {
             <About />
           </Route>
 
-
-            <Route path="/timer">
-              <Timer
-                currentTimer={this.state.currentTimer}
-                onChangeTimer={this.handleChangeTimer}
-                hours={this.state.focusTime}
-                minutes={this.state.focusTime}
-                seconds={this.state.focusTime}
-                startTimer={this.startTimer}
-                stopTimer={this.stopTimer}
-                timerState={this.state.timerState}
-                isPlaying={this.state.isPlaying}
-                completeTimer={this.completeTimer}
-                breakHours={this.state.breakTime}
-                breakMinutes={this.state.breakTime}
-                breakSeconds={this.state.breakTime}
-                startBreakTimer={this.startBreakTimer}
-                stopBreakTimer={this.stopBreakTimer}
-                resetBreakTimer={this.resetBreakTimer}
-                resetTimer={this.resetTimer}
-              />
-            </Route>
-          </main>
-
+          <Route path="/timer">
+            <Timer
+              currentTimer={this.state.currentTimer}
+              onChangeTimer={this.handleChangeTimer}
+              hours={this.state.focusTime}
+              minutes={this.state.focusTime}
+              seconds={this.state.focusTime}
+              startTimer={this.startTimer}
+              stopTimer={this.stopTimer}
+              timerState={this.state.timerState}
+              isPlaying={this.state.isPlaying}
+              completeTimer={this.completeTimer}
+              breakHours={this.state.breakTime}
+              breakMinutes={this.state.breakTime}
+              breakSeconds={this.state.breakTime}
+              startBreakTimer={this.startBreakTimer}
+              stopBreakTimer={this.stopBreakTimer}
+              resetBreakTimer={this.resetBreakTimer}
+              resetTimer={this.resetTimer}
+            />
+          </Route>
         </Switch>
       </div>
     );
