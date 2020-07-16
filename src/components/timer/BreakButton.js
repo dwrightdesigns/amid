@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styled, { keyframes } from "styled-components";
 import * as timerStates from "../../timerStates";
+import BreathExCard from "./BreathExCard";
 
 const ButtonContainer = styled.div`
   margin: 0 0 2rem 0;
@@ -18,6 +19,7 @@ const Test = styled.path`
   animation-name: count;
   animation-direction: linear;
   animation-duration: 60s;
+
 
   @keyframes count {
     to {
@@ -47,10 +49,9 @@ const StyledButton = styled.button`
   }
 `;
 
-class TimerButton extends React.Component {
+class BreakButton extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
 
     this.getButton = this.getButton.bind(this);
   }
@@ -58,7 +59,7 @@ class TimerButton extends React.Component {
   getButton() {
     if (this.props.timerState === timerStates.NOT_SET)
       return (
-        <StyledButton onClick={this.props.startTimer}>
+        <StyledButton onClick={this.props.startBreakTimer}>
           <h4>Start</h4>
         </StyledButton>
       );
@@ -69,7 +70,7 @@ class TimerButton extends React.Component {
           width={202}
           height={202}
           fill="none"
-          onClick={this.props.stopTimer}
+          onClick={this.props.stopBreakTimer}
         >
           <Test
             d="M101 51c-27.614 0-50 22.386-50 50s22.386 50 50 50 50-22.386 50-50c0-26.438-22-50-50-50"
@@ -79,8 +80,8 @@ class TimerButton extends React.Component {
               animationDuration: `${
                 this.props.timerState === timerStates.RUNNING &&
                 this.props.isPlaying &&
-                this.props.stopTimer
-                  ? this.props.focusSet * 60
+                this.props.stopBreakTimer
+                  ? this.props.breakSet * 60
                   : 0
               }s`,
             }}
@@ -97,7 +98,7 @@ class TimerButton extends React.Component {
 
     if (this.props.timerState === timerStates.COMPLETE)
       return (
-        <StyledButton onClick={this.props.resetTimer}>
+        <StyledButton onClick={this.props.resetBreakTimer}>
           <h4>Reset</h4>
         </StyledButton>
       );
@@ -108,4 +109,4 @@ class TimerButton extends React.Component {
   }
 }
 
-export default TimerButton;
+export default BreakButton;

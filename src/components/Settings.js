@@ -1,82 +1,131 @@
-import React from "react";
+import React, { Component } from "react";
 import "../App.scss";
 import styled from "styled-components";
 import { Link, withRouter } from "react-router-dom";
+import * as timerStates from "../timerStates";
 
-const Settings = ({ open, ...props }) => {
+class Settings extends Component {
+  constructor(props) {
+    super(props);
 
-  function decreaseCounter() {
-    if (props.breakDuration === 1) {
-      return;
-    }
-    props.decreaseBreak();
+    this.handleFocusChange = this.handleFocusChange.bind(this);
+    this.handleBreakChange = this.handleBreakChange.bind(this);
   }
 
-  function increaseCounter() {
-    if (props.breakDuration === 180) {
-      return;
-    }
-    props.increaseBreak();
+  handleFocusChange(e) {
+    const newFocusSet = this.props.focusSet;
+
+    if (e.target.id === "hours")
+      newFocusSet
+        .subtract(newFocusSet.get("hours"), "hours")
+        .add(parseInt(e.target.value, 10), "hours");
+
+    if (e.target.id === "minutes")
+      newFocusSet
+        .subtract(newFocusSet.get("minutes"), "minutes")
+        .add(parseInt(e.target.value, 10), "minutes");
+
+    if (e.target.id === "seconds")
+      newFocusSet
+        .subtract(newFocusSet.get("seconds"), "seconds")
+        .add(parseInt(e.target.value, 10), "seconds");
+
+    this.props.setFocusSet(newFocusSet);
   }
 
-  function decreaseFocus() {
-    if (props.focusDuration === 1) {
-      return;
-    }
-    props.decreaseFocus();
+  handleBreakChange(e) {
+    const newBreakSet = this.props.breakSet;
+
+    if (e.target.id === "hours")
+      newBreakSet
+        .subtract(newBreakSet.get("hours"), "hours")
+        .add(parseInt(e.target.value, 10), "hours");
+
+    if (e.target.id === "minutes")
+      newBreakSet
+        .subtract(newBreakSet.get("minutes"), "minutes")
+        .add(parseInt(e.target.value, 10), "minutes");
+
+    if (e.target.id === "seconds")
+      newBreakSet
+        .subtract(newBreakSet.get("seconds"), "seconds")
+        .add(parseInt(e.target.value, 10), "seconds");
+
+    this.props.setBreakSet(newBreakSet);
   }
 
-  function increaseFocus() {
-    if (props.focusDuration === 180) {
-      return;
-    }
-    props.increaseFocus();
-  }
-  return (
-    <StyledWrapper open={open}>
-      <StyledDuration>
-        <div className="left">
-          <h5>Break Duration</h5>
-          <StyledTime>
-            <div className="duration">
-              <button onClick={decreaseCounter}>
-                <i class="fas fa-caret-down"></i>
-              </button>
-              <h4>{props.breakDuration}</h4>
-              <button onClick={increaseCounter}>
-                <i class="fas fa-caret-up"></i>
-              </button>
+  render() {
+    return (
+      <StyledWrapper open={this.props.open}>
+        {this.props.timerState !== timerStates.RUNNING && (
+          <StyledDuration>
+            <div>
+              <h5>Break Duration</h5>
+              <StyledTime>
+                <div className="duration">
+                  <input
+                    id="hours"
+                    type="number"
+                    onChange={this.handleBreakChange}
+                    defaultValue={this.props.breakSet.get(`hours`)}
+                  />
+                  <p>hours</p>
+                </div>
+                <div className="duration">
+                  <input
+                    id="minutes"
+                    type="number"
+                    onChange={this.handleBreakChange}
+                    defaultValue={this.props.breakSet.get(`minutes`)}
+                  />
+                  <p>minutes</p>
+                </div>
+                <div className="duration">
+                  <input
+                    id="seconds"
+                    type="number"
+                    onChange={this.handleBreakChange}
+                    defaultValue={this.props.breakSet.get(`seconds`)}
+                  />
+                  <p>seconds</p>
+                </div>
+              </StyledTime>
             </div>
-            <p>minutes</p>
-          </StyledTime>
-        </div>
-        <div className="right">
-          <h5>Focus Duration</h5>
-          <StyledTime>
-            <div className="duration">
-              <button onClick={decreaseFocus}>
-                <i class="fas fa-caret-down"></i>
-              </button>
-              <h4>{props.focusDuration}</h4>
-              <button onClick={increaseFocus}>
-                <i class="fas fa-caret-up"></i>
-              </button>
+            <div>
+              <h5>Focus Duration</h5>
+              <StyledTime>
+                <div className="duration">
+                  <input
+                    id="hours"
+                    type="number"
+                    onChange={this.handleFocusChange}
+                    defaultValue={this.props.focusSet.get("hours")}
+                  />
+                  <p>hours</p>
+                </div>
+                <div className="duration">
+                  <input
+                    id="minutes"
+                    type="number"
+                    onChange={this.handleFocusChange}
+                    defaultValue={this.props.focusSet.get("minutes")}
+                  />
+                  <p>minutes</p>
+                </div>
+                <div className="duration">
+                  <input
+                    id="seconds"
+                    type="number"
+                    onChange={this.handleFocusChange}
+                    defaultValue={this.props.focusSet.get("seconds")}
+                  />
+                  <p>seconds</p>
+                </div>
+              </StyledTime>
             </div>
-            <p>minutes</p>
-          </StyledTime>
-        </div>
-      </StyledDuration>
-      <StyledToggle>
-        <h5>Auto Start Break</h5>
-        <StyledLabel>
-          <div className="toggle">
-            <input type="checkbox" className="checkbox" />
-            <div className="knobs"></div>
-            <div className="layer"></div>
-          </div>
-        </StyledLabel>
-      </StyledToggle>
-      <StyledToggle>
+          </StyledDuration>
+        )}
+        {/* <StyledToggle>
         <h5>Play Chime When Timer Ends</h5>
         <StyledLabel>
           <div className="toggle">
@@ -85,101 +134,101 @@ const Settings = ({ open, ...props }) => {
             <div className="layer"></div>
           </div>
         </StyledLabel>
-      </StyledToggle>
-      <StyledButtons>
-        <div className="left">
-          <Link to="/" className="dark-btn button btn">
-            <i class="fas fa-question"></i>
-            <h5>how to use</h5>
-          </Link>
-        </div>
-        <div className="right">
-          <Link to="/about" className="dark-btn button btn">
-            <i class="fas fa-info"></i>
-            <h5>about</h5>
-          </Link>
-        </div>
-      </StyledButtons>
-      <cite>made by team amid</cite>
-    </StyledWrapper>
-  );
-};
+      </StyledToggle> */}
+        <StyledButtons>
+          <div className="left">
+            <Link to="/" className="dark-btn button btn">
+              <i className="fas fa-question"></i>
+              <h5>how to use</h5>
+            </Link>
+          </div>
+          <div className="right">
+            <Link to="/about" className="dark-btn button btn">
+              <i className="fas fa-info"></i>
+              <h5>about</h5>
+            </Link>
+          </div>
+        </StyledButtons>
+        <cite>made by team amid</cite>
+      </StyledWrapper>
+    );
+  }
+}
+// const StyledLabel = styled.label`
+//     margin: .5rem;
+//     border-radius: 4px;
 
-const StyledLabel = styled.label`
-    margin: .5rem;
-    border-radius: 4px;
-    
-.toggle {
-    position: relative;
-    top: 50%;
-    width: 51px;
-    height: 31px;
-    overflow: hidden;
-    border-radius: 100px;
-    background-color: var(--light-color);
+// .toggle {
+//     position: relative;
+//     top: 50%;
+//     width: 51px;
+//     height: 31px;
+//     overflow: hidden;
+//     border-radius: 100px;
+//     background-color: var(--light-color);
 
-    .checkbox {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        padding: 0;
-        margin: 0;
-        opacity: 0;
-        cursor: pointer;
-        z-index: 3;
-        
-        &:checked + .knobs:before {
-            left: -28px;
-        }
+//     .checkbox {
+//         position: relative;
+//         width: 100%;
+//         height: 100%;
+//         padding: 0;
+//         margin: 0;
+//         opacity: 0;
+//         cursor: pointer;
+//         z-index: 3;
 
-        &:checked + .knobs:after {
-            right: 4px;
-        }
+//         &:checked + .knobs:before {
+//             left: -28px;
+//         }
 
-        &:checked ~ .layer {
-            background-color: var(--dark-color);
-        }
-    }
+//         &:checked + .knobs:after {
+//             right: 4px;
+//         }
 
-    .knobs {
-        z-index: 2;
+//         &:checked ~ .layer {
+//             background-color: var(--dark-color);
+//         }
+//     }
 
-        &:before, &:after {
-            content: '';
-            position: absolute;
-            top: 4px;
-            left: 4px;
-            width: 15px;
-            height: 5px;
-            font-size: 10px;
-            font-weight: bold;
-            text-align: center;
-            line-height: 1;
-            padding: 9px 4px;
-            background-color: var(--toggleOff-color);
-            border-radius: 50%;
-            transition: 0.3s ease all;
-        }
+//     .knobs {
+//         z-index: 2;
 
-        &:before {
-            content: "";
-        }
-        
-        &:after {
-            content: "";
-            right: -28px;
-            left: auto;
-            background-color: var(--toggleOn-color);
-        }
+//         &:before, &:after {
+//             content: '';
+//             position: absolute;
+//             top: 4px;
+//             left: 4px;
+//             width: 15px;
+//             height: 5px;
+//             font-size: 10px;
+//             font-weight: bold;
+//             text-align: center;
+//             line-height: 1;
+//             padding: 9px 4px;
+//             background-color: var(--toggleOff-color);
+//             border-radius: 50%;
+//             transition: 0.3s ease all;
+//         }
 
-    .layer {
-        width: 100%;
-        background-color: #ebf7fc;
-        transition: 0.3s ease all;
-        z-index: 1;
-    }
-}  
-`;
+//         &:before {
+//             content: "";
+//         }
+
+//         &:after {
+//             content: "";
+//             right: -28px;
+//             left: auto;
+//             background-color: var(--toggleOn-color);
+//         }
+
+//     .layer {
+//         width: 100%;
+//         background-color: #ebf7fc;
+//         transition: 0.3s ease all;
+//         z-index: 1;
+//     }
+// }
+// `;
 
 const StyledWrapper = styled.div`
   display: flex;
@@ -205,6 +254,7 @@ const StyledWrapper = styled.div`
 
 const StyledDuration = styled.section`
   display: flex;
+  flex-direction: column;
   width: 100%;
   max-width: 400px;
   justify-content: center;
@@ -213,15 +263,6 @@ const StyledDuration = styled.section`
   h5 {
     font-size: 0.8rem;
   }
-
-  .left {
-    margin: 0 0.5rem 0 0;
-    width: 100%;
-  }
-  .right {
-    margin: 0 0 0 0.5rem;
-    width: 100%;
-  }
 `;
 
 const StyledTime = styled.div`
@@ -229,15 +270,18 @@ const StyledTime = styled.div`
   margin: 0.5rem auto;
   padding: 0.5rem 1.5rem;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   border-radius: 8px;
+  width: 100%;
 
   .duration {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    flex-direction: column;
+    width: 100%;
 
     h4 {
       color: var(--light-color);
@@ -282,24 +326,24 @@ const StyledTime = styled.div`
   }
 `;
 
-const StyledToggle = styled.section`
-  background-color: var(--dark-color);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 50px;
-  color: var(--light-color);
-  border-radius: 8px;
-  width: 100%;
-  max-width: 400px;
-  margin: 0.5rem 1rem;
-  padding: 0.5rem;
+// const StyledToggle = styled.section`
+//   background-color: var(--dark-color);
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-between;
+//   height: 50px;
+//   color: var(--light-color);
+//   border-radius: 8px;
+//   width: 100%;
+//   max-width: 400px;
+//   margin: 0.5rem 1rem;
+//   padding: 0.5rem;
 
-  h5 {
-    font-size: 0.8rem;
-    margin: 0 0 0 0.5rem;
-  }
-`;
+//   h5 {
+//     font-size: 0.8rem;
+//     margin: 0 0 0 0.5rem;
+//   }
+// `;
 
 const StyledButtons = styled.section`
   color: var(--light-color);
