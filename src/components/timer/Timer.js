@@ -8,6 +8,7 @@ import BreathExCard from "./BreathExCard";
 import ChoicePage from "../ChoicePage";
 import BreathInstruct from "./instructions";
 import { Link } from "react-router-dom";
+import BreakButton from "./BreakButton";
 
 const TimerFlex = styled.div`
   display: flex;
@@ -143,7 +144,7 @@ class Timer extends React.Component {
               {leftPad(this.props.seconds.get("seconds"))}
             </DigitsOnTimer>
             {this.props.timerState == timerStates.COMPLETE && (
-              <iframe src="/amid-alarm.mp3" allow="autoplay" id="iframeAudio" />
+              <iframe src="/amid-alarm.wav" allow="autoplay" id="iframeAudio" />
             )}
             <TimerButton
               isPlaying={this.props.isPlaying}
@@ -172,21 +173,30 @@ class Timer extends React.Component {
         <>
           <TimerFlex>
             <DigitsOnTimer>
-              {leftPad(this.props.hours.get("hours"))}:
-              {leftPad(this.props.minutes.get("minutes"))}:
-              {leftPad(this.props.seconds.get("seconds"))}
+              {leftPad(this.props.breakHours.get("hours"))}:
+              {leftPad(this.props.breakMinutes.get("minutes"))}:
+              {leftPad(this.props.breakSeconds.get("seconds"))}
             </DigitsOnTimer>
             {this.props.timerState == timerStates.COMPLETE && (
-              <iframe src="/amid-alarm.mp3" allow="autoplay" id="iframeAudio" />
+              <iframe src="/amid-alarm.wav" allow="autoplay" id="iframeAudio" />
             )}
-            <BreathExCard />
+            <BreathExCard
+              startBreakTimer={this.props.startBreakTimer}
+              timerState={this.props.timerState}
+              stopBreakTimer={this.props.stopBreakTimer}
+              resetBreakTimer={this.props.resetBreakTimer}
+            />
             <BreathInstruct />
 
-            <SkipButton
+            <Link
+              className="switch-btn"
+              to="/timer"
               onClick={() => {
                 this.handleChangeTimer("focus");
               }}
-            />
+            >
+              Switch to Focus<i className="fas fa-step-forward"></i>
+            </Link>
           </TimerFlex>
         </>
       );
@@ -197,28 +207,30 @@ class Timer extends React.Component {
         <>
           <TimerFlex>
             <DigitsOnTimer>
-              {leftPad(this.props.hours.get("hours"))}:
-              {leftPad(this.props.minutes.get("minutes"))}:
-              {leftPad(this.props.seconds.get("seconds"))}
+              {leftPad(this.props.breakHours.get("hours"))}:
+              {leftPad(this.props.breakMinutes.get("minutes"))}:
+              {leftPad(this.props.breakSeconds.get("seconds"))}
             </DigitsOnTimer>
             {this.props.timerState == timerStates.COMPLETE && (
-              <iframe src="/amid-alarm.mp3" allow="autoplay" id="iframeAudio" />
+              <iframe src="/amid-alarm.wav" allow="autoplay" id="iframeAudio" />
             )}
-            <TimerButton
+            <BreakButton
               isPlaying={this.props.isPlaying}
-              startTimer={this.props.startTimer}
+              startBreakTimer={this.props.startBreakTimer}
               timerState={this.props.timerState}
-              stopTimer={this.props.stopTimer}
-              resetTimer={this.props.resetTimer}
+              stopBreakTimer={this.props.stopBreakTimer}
+              resetBreakTimer={this.props.resetBreakTimer}
             />
 
-            <SkipButton
-              sessionType={
-                this.state.sessionType === "focus"
-                  ? "Switch to Break"
-                  : "Switch to Focus"
-              }
-            />
+            <Link
+              className="switch-btn"
+              to="/focus"
+              onClick={() => {
+                this.handleChangeTimer("focus");
+              }}
+            >
+              Switch to Focus<i className="fas fa-step-forward icon"></i>
+            </Link>
           </TimerFlex>
         </>
       );

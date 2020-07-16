@@ -24,10 +24,15 @@ class App extends React.Component {
     };
     this.setBreakSet = this.setBreakSet.bind(this);
     this.setFocusSet = this.setFocusSet.bind(this);
+    this.reduceBreakTimer = this.reduceBreakTimer.bind(this);
+    this.startBreakTimer = this.startBreakTimer.bind(this);
     this.startTimer = this.startTimer.bind(this);
     this.reduceFocusTimer = this.reduceFocusTimer.bind(this);
     this.stopTimer = this.stopTimer.bind(this);
+    this.stopBreakTimer = this.stopBreakTimer.bind(this);
     this.completeTimer = this.completeTimer.bind(this);
+    this.resetTimer = this.resetTimer.bind(this);
+    this.resetBreakTimer = this.resetBreakTimer.bind(this);
     this.handleChangeTimer = this.handleChangeTimer.bind(this);
   }
 
@@ -59,6 +64,18 @@ class App extends React.Component {
   }
 
   stopTimer() {
+    if (this.state.timer) {
+      clearInterval(this.state.timer);
+    }
+    this.setState({
+      timerState: timerStates.NOT_SET,
+      timer: null,
+      paused: true,
+      isPlaying: true,
+    });
+  }
+
+  resetTimer() {
     if (this.state.timer) {
       clearInterval(this.state.timer);
     }
@@ -99,6 +116,56 @@ class App extends React.Component {
     });
   }
 
+  // break timer
+
+  startBreakTimer() {
+    this.setState({
+      timerState: timerStates.RUNNING,
+      timer: setInterval(this.reduceBreakTimer, 1000),
+      paused: false,
+    });
+  }
+
+  stopBreakTimer() {
+    if (this.state.timer) {
+      clearInterval(this.state.timer);
+    }
+    this.setState({
+      timerState: timerStates.NOT_SET,
+      timer: null,
+      paused: true,
+      isPlaying: true,
+    });
+  }
+
+  resetBreakTimer() {
+    if (this.state.timer) {
+      clearInterval(this.state.timer);
+    }
+    this.setState({
+      timerState: timerStates.NOT_SET,
+      timer: null,
+      breakTime: moment.duration(this.state.breakSet),
+    });
+  }
+
+  reduceBreakTimer() {
+    if (
+      this.state.breakTime.get("hours") === 0 &&
+      this.state.breakTime.get("minutes") === 0 &&
+      this.state.breakTime.get("seconds") === 0
+    ) {
+      this.completeTimer();
+      return;
+    }
+    const newTime = moment.duration(this.state.breakTime);
+    newTime.subtract(1, "second");
+
+    this.setState({
+      breakTime: newTime,
+    });
+  }
+
   render() {
     return (
       <div className="App">
@@ -129,6 +196,13 @@ class App extends React.Component {
                 timerState={this.state.timerState}
                 isPlaying={this.state.isPlaying}
                 completeTimer={this.completeTimer}
+                breakHours={this.state.breakTime}
+                breakMinutes={this.state.breakTime}
+                breakSeconds={this.state.breakTime}
+                startBreakTimer={this.startBreakTimer}
+                stopBreakTimer={this.stopBreakTimer}
+                resetBreakTimer={this.resetBreakTimer}
+                resetTimer={this.resetTimer}
               />
             </Route>
           </main>
