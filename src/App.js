@@ -210,6 +210,7 @@ class App extends React.Component {
               stopBreakTimer={this.stopBreakTimer}
               resetBreakTimer={this.resetBreakTimer}
               resetTimer={this.resetTimer}
+              focusSet={this.state.focusSet}
             />
           </Route>
         </Switch>

@@ -17,7 +17,6 @@ const Test = styled.path`
 
   animation-name: count;
   animation-direction: linear;
-  animation-duration: 60s;
 
   @keyframes count {
     to {
@@ -52,7 +51,19 @@ class TimerButton extends React.Component {
     this.state = {};
 
     this.getButton = this.getButton.bind(this);
-    console.log(this.props.focusSet);
+  }
+
+  animation() {
+    const style = {
+      animation: `count ${this.props.focusSet.asSeconds()}s linear`,
+      // animationPlayState:
+      //   this.props.timerState === timerStates.RUNNING ? "running" : "paused",
+      // animationDelay:
+      //   ((this.props.focusSet.asSeconds() - this.props.time.asSeconds()) * -1) /
+      //     4 +
+      //   "s",
+    };
+    return style;
   }
 
   getButton() {
@@ -69,21 +80,12 @@ class TimerButton extends React.Component {
           width={202}
           height={202}
           fill="none"
-          onClick={this.props.stopTimer}
         >
           <Test
             d="M101 51c-27.614 0-50 22.386-50 50s22.386 50 50 50 50-22.386 50-50c0-26.438-22-50-50-50"
             stroke="var(--light-color)"
             strokeWidth={100}
-            style={{
-              animationDuration: `${
-                this.props.timerState === timerStates.RUNNING &&
-                this.props.isPlaying &&
-                this.props.stopTimer
-                  ? this.props.focusSet * 60
-                  : 0
-              }s`,
-            }}
+            style={this.animation()}
           />
           <circle
             cx={101}

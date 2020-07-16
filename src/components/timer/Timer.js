@@ -156,6 +156,8 @@ class Timer extends React.Component {
               timerState={this.props.timerState}
               stopTimer={this.props.stopTimer}
               resetTimer={this.props.resetTimer}
+              focusSet={this.props.focusSet}
+              time={this.props.seconds}
             />
             <TaskTextArea />
             <Link to="/break-choice">
@@ -195,6 +197,7 @@ class Timer extends React.Component {
               timerState={this.props.timerState}
               stopBreakTimer={this.props.stopBreakTimer}
               resetBreakTimer={this.props.resetBreakTimer}
+              
             />
             <BreathInstruct />
 
