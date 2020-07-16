@@ -6,7 +6,7 @@ import styled from "styled-components";
 import * as timerStates from "../../timerStates";
 import BreathExCard from "./BreathExCard";
 import ChoicePage from "../ChoicePage";
-import BreathInstruct from "./instructions";
+import BreathInstruct from "./Instructions";
 import { Link } from "react-router-dom";
 import BreakButton from "./BreakButton";
 
