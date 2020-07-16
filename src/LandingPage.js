@@ -130,7 +130,6 @@ const StyledMethod = styled.section`
     url(img/beach.jpg);
   background-position: center;
   background-size: cover;
-  // transform: scaleX(-1);
   @media screen and (min-width: 768px) {
     padding: 5rem 4rem;
   }
@@ -139,7 +138,6 @@ const StyledMethod = styled.section`
   }
 
   .method-content {
-    // transform: scaleX(-1);
     padding: 2rem;
 
     h1 {
