@@ -6,7 +6,11 @@ import Header from "./components/Header";
 import Timer from "./components/timer/Timer";
 import Landing from "./LandingPage";
 import ChoicePage from "./components/ChoicePage";
+
+import About from "./components/About";
+
 import * as timerStates from "./timerStates";
+
 
 class App extends React.Component {
   constructor(props) {
@@ -183,7 +187,12 @@ class App extends React.Component {
           <Route path="/break-choice">
             <ChoicePage onChangeTimer={this.handleChangeTimer} />
           </Route>
-          <main>
+
+          <Route path="/about">
+            <About />
+          </Route>
+
+
             <Route path="/timer">
               <Timer
                 currentTimer={this.state.currentTimer}
@@ -206,6 +215,7 @@ class App extends React.Component {
               />
             </Route>
           </main>
+
         </Switch>
       </div>
     );
