@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import * as timerStates from "../../timerStates";
-import BreathExCard from "./BreathExCard";
 
 const ButtonContainer = styled.div`
   margin: 0 0 2rem 0;

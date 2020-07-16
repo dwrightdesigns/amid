@@ -62,9 +62,6 @@ const BreatheVariant = {
 };
 
 class BreathExCard extends Component {
-  constructor() {
-    super();
-  }
 
   getButton() {
     if (this.props.timerState === timerStates.NOT_SET)
