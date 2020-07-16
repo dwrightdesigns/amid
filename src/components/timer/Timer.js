@@ -193,10 +193,22 @@ class Timer extends React.Component {
               to="/timer"
               onClick={() => {
                 this.handleChangeTimer("focus");
+                window.location.reload(false);
               }}
             >
               Switch to Focus<i className="fas fa-step-forward"></i>
             </Link>
+            {/* <SkipButton
+              onClick={() => {
+                this.handleChangeTimer("focus");
+                window.location.reload(false);
+              }}
+              sessionType={
+                this.state.sessionType === "focus"
+                  ? "Switch to Break"
+                  : "Switch to Focus"
+              }
+            /> */}
           </TimerFlex>
         </>
       );
@@ -224,9 +236,10 @@ class Timer extends React.Component {
 
             <Link
               className="switch-btn"
-              to="/focus"
+              to="/timer"
               onClick={() => {
                 this.handleChangeTimer("focus");
+                window.location.reload(false);
               }}
             >
               Switch to Focus<i className="fas fa-step-forward icon"></i>
