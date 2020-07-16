@@ -145,10 +145,6 @@ const StyledScope = styled.div`
     padding: 10rem 8rem;
     margin: auto;
   }
-
-  cite {
-    margin: 1rem;
-  }
 `;
 
 function About() {

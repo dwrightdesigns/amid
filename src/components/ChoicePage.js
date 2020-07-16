@@ -50,7 +50,7 @@ function ChoicePage(props) {
       >
         Breathing Exercise
       </Link>
-      <Cite>© 2020 amid</Cite>
+      <Cite>© made by team amid</Cite>
     </PageWrapper>
   );
 }

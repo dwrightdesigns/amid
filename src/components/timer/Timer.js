@@ -163,6 +163,7 @@ class Timer extends React.Component {
                 }
               />
             </Link>
+            <cite>© made by team amid</cite>
           </TimerFlex>
         </>
       );
@@ -198,17 +199,7 @@ class Timer extends React.Component {
             >
               Switch to Focus<i className="fas fa-step-forward"></i>
             </Link>
-            {/* <SkipButton
-              onClick={() => {
-                this.handleChangeTimer("focus");
-                window.location.reload(false);
-              }}
-              sessionType={
-                this.state.sessionType === "focus"
-                  ? "Switch to Break"
-                  : "Switch to Focus"
-              }
-            /> */}
+            <cite>© made by team amid</cite>
           </TimerFlex>
         </>
       );
@@ -244,6 +235,7 @@ class Timer extends React.Component {
             >
               Switch to Focus<i className="fas fa-step-forward icon"></i>
             </Link>
+            <cite>© made by team amid</cite>
           </TimerFlex>
         </>
       );
