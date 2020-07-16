@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import styled, { keyframes } from "styled-components";
+import React from "react";
+import styled from "styled-components";
 import * as timerStates from "../../timerStates";
 
 const ButtonContainer = styled.div`
@@ -26,7 +26,6 @@ const Test = styled.path`
   }
 
   &:hover {
-    // stroke: var(--dark-color);
     opacity: 0.5;
   }
 `;
@@ -53,6 +52,7 @@ class TimerButton extends React.Component {
     this.state = {};
 
     this.getButton = this.getButton.bind(this);
+    console.log(this.props.focusSet);
   }
 
   getButton() {
@@ -102,9 +102,12 @@ class TimerButton extends React.Component {
         </StyledButton>
       );
   }
-
   render() {
-    return <ButtonContainer>{this.getButton()}</ButtonContainer>;
+    return (
+      <>
+        <ButtonContainer>{this.getButton()}</ButtonContainer>
+      </>
+    );
   }
 }
 

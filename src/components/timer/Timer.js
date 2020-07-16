@@ -5,7 +5,6 @@ import TaskTextArea from "./TaskTextArea";
 import styled from "styled-components";
 import * as timerStates from "../../timerStates";
 import BreathExCard from "./BreathExCard";
-import ChoicePage from "../ChoicePage";
 import BreathInstruct from "./instructions";
 import { Link } from "react-router-dom";
 import BreakButton from "./BreakButton";
@@ -143,8 +142,13 @@ class Timer extends React.Component {
               {leftPad(this.props.minutes.get("minutes"))}:
               {leftPad(this.props.seconds.get("seconds"))}
             </DigitsOnTimer>
-            {this.props.timerState == timerStates.COMPLETE && (
-              <iframe src="/amid-alarm.wav" allow="autoplay" id="iframeAudio" />
+            {this.props.timerState === timerStates.COMPLETE && (
+              <iframe
+                src="/amid-alarm.wav"
+                allow="autoplay"
+                id="iframeAudio"
+                title="alarm"
+              />
             )}
             <TimerButton
               isPlaying={this.props.isPlaying}
@@ -178,8 +182,13 @@ class Timer extends React.Component {
               {leftPad(this.props.breakMinutes.get("minutes"))}:
               {leftPad(this.props.breakSeconds.get("seconds"))}
             </DigitsOnTimer>
-            {this.props.timerState == timerStates.COMPLETE && (
-              <iframe src="/amid-alarm.wav" allow="autoplay" id="iframeAudio" />
+            {this.props.timerState === timerStates.COMPLETE && (
+              <iframe
+                src="/amid-alarm.wav"
+                allow="autoplay"
+                id="iframeAudio"
+                title="alarm"
+              />
             )}
             <BreathExCard
               startBreakTimer={this.props.startBreakTimer}
@@ -214,8 +223,13 @@ class Timer extends React.Component {
               {leftPad(this.props.breakMinutes.get("minutes"))}:
               {leftPad(this.props.breakSeconds.get("seconds"))}
             </DigitsOnTimer>
-            {this.props.timerState == timerStates.COMPLETE && (
-              <iframe src="/amid-alarm.wav" allow="autoplay" id="iframeAudio" />
+            {this.props.timerState === timerStates.COMPLETE && (
+              <iframe
+                src="/amid-alarm.wav"
+                allow="autoplay"
+                id="iframeAudio"
+                title="alarm"
+              />
             )}
             <BreakButton
               isPlaying={this.props.isPlaying}

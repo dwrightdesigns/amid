@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import Settings from "./Settings";
 
 const StyledHeader = styled.header`
