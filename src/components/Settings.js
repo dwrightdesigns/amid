@@ -125,16 +125,6 @@ class Settings extends Component {
             </div>
           </StyledDuration>
         )}
-        {/* <StyledToggle>
-        <h5>Play Chime When Timer Ends</h5>
-        <StyledLabel>
-          <div className="toggle">
-            <input type="checkbox" className="checkbox" />
-            <div className="knobs"></div>
-            <div className="layer"></div>
-          </div>
-        </StyledLabel>
-      </StyledToggle> */}
         <StyledButtons>
           <div className="left">
             <Link to="/" className="dark-btn button btn">
@@ -149,86 +139,28 @@ class Settings extends Component {
             </Link>
           </div>
         </StyledButtons>
+        <StyledSave
+          className="gradient-btn button"
+          open={this.props.open}
+          onClick={() => this.props.setOpen(!this.props.open)}
+        >
+          <h5>Save</h5>
+        </StyledSave>
         <cite>made by team amid</cite>
       </StyledWrapper>
     );
   }
 }
-// const StyledLabel = styled.label`
-//     margin: .5rem;
-//     border-radius: 4px;
 
-// .toggle {
-//     position: relative;
-//     top: 50%;
-//     width: 51px;
-//     height: 31px;
-//     overflow: hidden;
-//     border-radius: 100px;
-//     background-color: var(--light-color);
-
-//     .checkbox {
-//         position: relative;
-//         width: 100%;
-//         height: 100%;
-//         padding: 0;
-//         margin: 0;
-//         opacity: 0;
-//         cursor: pointer;
-//         z-index: 3;
-
-//         &:checked + .knobs:before {
-//             left: -28px;
-//         }
-
-//         &:checked + .knobs:after {
-//             right: 4px;
-//         }
-
-//         &:checked ~ .layer {
-//             background-color: var(--dark-color);
-//         }
-//     }
-
-//     .knobs {
-//         z-index: 2;
-
-//         &:before, &:after {
-//             content: '';
-//             position: absolute;
-//             top: 4px;
-//             left: 4px;
-//             width: 15px;
-//             height: 5px;
-//             font-size: 10px;
-//             font-weight: bold;
-//             text-align: center;
-//             line-height: 1;
-//             padding: 9px 4px;
-//             background-color: var(--toggleOff-color);
-//             border-radius: 50%;
-//             transition: 0.3s ease all;
-//         }
-
-//         &:before {
-//             content: "";
-//         }
-
-//         &:after {
-//             content: "";
-//             right: -28px;
-//             left: auto;
-//             background-color: var(--toggleOn-color);
-//         }
-
-//     .layer {
-//         width: 100%;
-//         background-color: #ebf7fc;
-//         transition: 0.3s ease all;
-//         z-index: 1;
-//     }
-// }
-// `;
+const StyledSave = styled.button`
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  max-width: 400px;
+  height: 60px;
+  outline: none;
+  margin: 1rem 0 0 0;
+`;
 
 const StyledWrapper = styled.div`
   display: flex;
@@ -325,25 +257,6 @@ const StyledTime = styled.div`
     color: var(--light-color);
   }
 `;
-
-// const StyledToggle = styled.section`
-//   background-color: var(--dark-color);
-//   display: flex;
-//   align-items: center;
-//   justify-content: space-between;
-//   height: 50px;
-//   color: var(--light-color);
-//   border-radius: 8px;
-//   width: 100%;
-//   max-width: 400px;
-//   margin: 0.5rem 1rem;
-//   padding: 0.5rem;
-
-//   h5 {
-//     font-size: 0.8rem;
-//     margin: 0 0 0 0.5rem;
-//   }
-// `;
 
 const StyledButtons = styled.section`
   color: var(--light-color);
