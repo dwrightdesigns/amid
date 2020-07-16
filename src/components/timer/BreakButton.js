@@ -53,56 +53,8 @@ class BreakButton extends Component {
   constructor(props) {
     super(props);
 
-    //   const duration = props.duration || 1000,
-    //     n = (props.loops == 0) ? 0 : props.loops ? props.loops : 1,
-    //     end = Date.now() + duration * n,
-    //     totalDuration = duration * n;
-
-    //   this.state = {
-    //     duration: duration,
-    //     loops: n,
-    //     end: end,
-    //     totalDuration: totalDuration,
-    //     showDuration: false,
-    //   };
-
     this.getButton = this.getButton.bind(this);
   }
-
-  // frame() {
-  //   const current = Date.now(),
-  //   remaining = this.state.end - current,
-  //   rate = this.state.loops + 1 - remaining /this.state.duration;
-
-  //   if(remaining < 60) {
-  //     this.draw(this.state.loops - 0.0001);
-  //     if (remaining < this.state.totalDuration && this.state.loops) return
-  //   }
-
-  //   if (this.props.reverse && this.props.reverse === true) {
-  //     rate = 360 - rate;
-  //   }
-
-  //   this.draw(rate);
-  //   requestAnimationFrame(this.frame.bind(this));
-  // }
-
-  // draw(rate) {
-  //   let angle = 360 * rate;
-
-  //   angle %= 360;
-
-  //   let rad = (angle * Math.PI / 180),
-  //     x - Math.sin(rad) * (this.props.width / 2),
-  //     y = Math.cos(rad) * (this.props.height / 2),
-  //     mid = (angle > 180) ? 1 : 0,
-  //     sweepDirection = 1;
-
-  //     if(this.props.inverse && this.props.inverse === true) {
-  //       mid = Math.abs(mid - 1);
-  //       sweepDirection = 0;
-  //     }
-  // }
 
   getButton() {
     if (this.props.timerState === timerStates.NOT_SET)
