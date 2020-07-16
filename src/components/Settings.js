@@ -146,7 +146,7 @@ class Settings extends Component {
         >
           <h5>Save</h5>
         </StyledSave>
-        <cite>made by team amid</cite>
+        <cite>© made by team amid</cite>
       </StyledWrapper>
     );
   }
@@ -178,10 +178,6 @@ const StyledWrapper = styled.div`
   position: fixed;
   top: 10vh;
   backdrop-filter: blur(5px);
-
-  cite {
-    margin: 0.5rem;
-  }
 `;
 
 const StyledDuration = styled.section`
