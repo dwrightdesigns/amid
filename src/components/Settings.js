@@ -9,6 +9,7 @@ class Settings extends Component {
     super(props);
 
     this.handleFocusChange = this.handleFocusChange.bind(this);
+    this.handleBreakChange = this.handleBreakChange.bind(this);
   }
 
   handleFocusChange(e) {
@@ -32,6 +33,27 @@ class Settings extends Component {
     this.props.setFocusSet(newFocusSet);
   }
 
+  handleBreakChange(e) {
+    const newBreakSet = this.props.breakSet;
+
+    if (e.target.id === "hours")
+      newBreakSet
+        .subtract(newBreakSet.get("hours"), "hours")
+        .add(parseInt(e.target.value, 10), "hours");
+
+    if (e.target.id === "minutes")
+      newBreakSet
+        .subtract(newBreakSet.get("minutes"), "minutes")
+        .add(parseInt(e.target.value, 10), "minutes");
+
+    if (e.target.id === "seconds")
+      newBreakSet
+        .subtract(newBreakSet.get("seconds"), "seconds")
+        .add(parseInt(e.target.value, 10), "seconds");
+
+    this.props.setBreakSet(newBreakSet);
+  }
+
   render() {
     return (
       <StyledWrapper open={this.props.open}>
@@ -44,7 +66,7 @@ class Settings extends Component {
                   <input
                     id="hours"
                     type="number"
-                    // onChange={this.handleFocusChange}
+                    onChange={this.handleBreakChange}
                     defaultValue={this.props.breakSet.get(`hours`)}
                   />
                   <p>hours</p>
@@ -53,7 +75,7 @@ class Settings extends Component {
                   <input
                     id="minutes"
                     type="number"
-                    // onChange={this.handleFocusChange}
+                    onChange={this.handleBreakChange}
                     defaultValue={this.props.breakSet.get(`minutes`)}
                   />
                   <p>minutes</p>
@@ -62,7 +84,7 @@ class Settings extends Component {
                   <input
                     id="seconds"
                     type="number"
-                    // onChange={this.handleFocusChange}
+                    onChange={this.handleBreakChange}
                     defaultValue={this.props.breakSet.get(`seconds`)}
                   />
                   <p>seconds</p>
@@ -77,7 +99,7 @@ class Settings extends Component {
                     id="hours"
                     type="number"
                     onChange={this.handleFocusChange}
-                    defaultValue={this.props.focusSet.get('hours')}
+                    defaultValue={this.props.focusSet.get("hours")}
                   />
                   <p>hours</p>
                 </div>
@@ -86,7 +108,7 @@ class Settings extends Component {
                     id="minutes"
                     type="number"
                     onChange={this.handleFocusChange}
-                    defaultValue={this.props.focusSet.get('minutes')}
+                    defaultValue={this.props.focusSet.get("minutes")}
                   />
                   <p>minutes</p>
                 </div>
@@ -95,7 +117,7 @@ class Settings extends Component {
                     id="seconds"
                     type="number"
                     onChange={this.handleFocusChange}
-                    defaultValue={this.props.focusSet.get('seconds')}
+                    defaultValue={this.props.focusSet.get("seconds")}
                   />
                   <p>seconds</p>
                 </div>
