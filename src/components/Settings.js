@@ -54,6 +54,12 @@ class Settings extends Component {
     this.props.setBreakSet(newBreakSet);
   }
 
+  navigate(e, path) {
+    e.preventDefault();
+    this.props.setOpen();
+    this.props.history.push(path);
+  }
+
   render() {
     return (
       <StyledWrapper open={this.props.open}>
@@ -127,16 +133,24 @@ class Settings extends Component {
         )}
         <StyledButtons>
           <div className="left">
-            <Link to="/" className="dark-btn button btn">
+            <a
+              href="#"
+              onClick={(e) => this.navigate(e, "/")}
+              className="dark-btn button btn"
+            >
               <i className="fas fa-question"></i>
               <h5>how to use</h5>
-            </Link>
+            </a>
           </div>
           <div className="right">
-            <Link to="/about" className="dark-btn button btn">
+            <a
+              href="#"
+              onClick={(e) => this.navigate(e, "/about")}
+              className="dark-btn button btn"
+            >
               <i className="fas fa-info"></i>
               <h5>about</h5>
-            </Link>
+            </a>
           </div>
         </StyledButtons>
         <StyledSave
