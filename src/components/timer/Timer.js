@@ -14,7 +14,7 @@ const TimerFlex = styled.div`
   align-items: center;
   flex-direction: column;
   background: var(--gradient-color);
-  height: 90vh;
+  height: 100vh;
   justify-content: center;
 
   iframe {
