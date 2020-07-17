@@ -203,7 +203,6 @@ class Timer extends React.Component {
 
             <button
               className="switch-btn"
-              to="/timer"
               onClick={() => {
                 this.handleChangeTimer("focus");
                 window.location.reload(false);
@@ -244,7 +243,6 @@ class Timer extends React.Component {
 
             <button
               className="switch-btn"
-              to="/timer"
               onClick={() => {
                 this.handleChangeTimer("focus");
                 window.location.reload(false);
