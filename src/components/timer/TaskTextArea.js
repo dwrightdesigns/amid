@@ -4,7 +4,7 @@ import styled from "styled-components";
 const TextAreaStyle = styled.textarea`
   outline: none;
   border: none;
-  width: 20rem;
+  width: 300px;
   text-align: center;
   font-family: "Poppins", sans-serif;
   background-color: rgba(229, 229, 229, 0.75);

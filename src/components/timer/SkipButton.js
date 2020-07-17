@@ -20,7 +20,7 @@ const SkipButtonStyle = styled.button`
     -webkit-appearance: none;
     -moz-appearance: none;
     outline: none;
-    margin: 3rem 0 0 0;
+    margin: 1.5rem 0 0 0;
     
     &:hover {
         background: var(--dark-color);

@@ -186,33 +186,33 @@ class App extends React.Component {
           <Route path="/break-choice">
             <ChoicePage onChangeTimer={this.handleChangeTimer} />
           </Route>
-
           <Route path="/about">
             <About />
           </Route>
-
-          <Route path="/timer">
-            <Timer
-              currentTimer={this.state.currentTimer}
-              onChangeTimer={this.handleChangeTimer}
-              hours={this.state.focusTime}
-              minutes={this.state.focusTime}
-              seconds={this.state.focusTime}
-              startTimer={this.startTimer}
-              stopTimer={this.stopTimer}
-              timerState={this.state.timerState}
-              isPlaying={this.state.isPlaying}
-              completeTimer={this.completeTimer}
-              breakHours={this.state.breakTime}
-              breakMinutes={this.state.breakTime}
-              breakSeconds={this.state.breakTime}
-              startBreakTimer={this.startBreakTimer}
-              stopBreakTimer={this.stopBreakTimer}
-              resetBreakTimer={this.resetBreakTimer}
-              resetTimer={this.resetTimer}
-              focusSet={this.state.focusSet}
-            />
-          </Route>
+          <main>
+            <Route path="/timer">
+              <Timer
+                currentTimer={this.state.currentTimer}
+                onChangeTimer={this.handleChangeTimer}
+                hours={this.state.focusTime}
+                minutes={this.state.focusTime}
+                seconds={this.state.focusTime}
+                startTimer={this.startTimer}
+                stopTimer={this.stopTimer}
+                timerState={this.state.timerState}
+                isPlaying={this.state.isPlaying}
+                completeTimer={this.completeTimer}
+                breakHours={this.state.breakTime}
+                breakMinutes={this.state.breakTime}
+                breakSeconds={this.state.breakTime}
+                startBreakTimer={this.startBreakTimer}
+                stopBreakTimer={this.stopBreakTimer}
+                resetBreakTimer={this.resetBreakTimer}
+                resetTimer={this.resetTimer}
+                focusSet={this.state.focusSet}
+              />
+            </Route>
+          </main>
         </Switch>
       </div>
     );

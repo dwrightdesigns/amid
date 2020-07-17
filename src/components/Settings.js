@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "../App.scss";
 import styled from "styled-components";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import * as timerStates from "../timerStates";
 
 class Settings extends Component {

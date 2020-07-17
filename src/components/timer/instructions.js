@@ -13,30 +13,30 @@ class BreathInstruct extends Component {
       arrows: true,
       slidesToScroll: 1,
       className: "slides",
-        autoplay: true,
+      autoplay: true,
       speed: 1000,
-      autoplaySpeed: 6000,
+      autoplaySpeed: 5000,
       cssEase: "linear",
       responsive: [
         {
           breakpoint: 1024,
           settings: {
-            arrows: true
-          }
+            arrows: true,
+          },
         },
         {
           breakpoint: 600,
           settings: {
-            arrows: true
-          }
+            arrows: false,
+          },
         },
         {
           breakpoint: 320,
           settings: {
-            arrows: false
-          }
-        }
-      ]
+            arrows: false,
+          },
+        },
+      ],
     };
     return (
       <Slider {...settings}>
