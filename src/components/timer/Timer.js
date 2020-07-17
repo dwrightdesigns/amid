@@ -14,8 +14,8 @@ const TimerFlex = styled.div`
   align-items: center;
   flex-direction: column;
   background: var(--gradient-color);
-  height: 100vh;
-  justify-content: center;
+  min-height: 100vh;
+  height: 100%;
 
   iframe {
     display: none;
@@ -23,7 +23,8 @@ const TimerFlex = styled.div`
 `;
 
 const DigitsOnTimer = styled.h1`
-  padding-bottom: 1rem;
+  margin-top: 7rem;
+  margin-bottom: 3rem;
   color: var(--dark-color);
   text-align: ;
 `;
@@ -135,6 +136,7 @@ class Timer extends React.Component {
     if (this.state.currentTimer === "focus") {
       // console.log("focus");
       return (
+        <>
           <TimerFlex>
             <DigitsOnTimer>
               {leftPad(this.props.hours.get("hours"))}:
@@ -170,11 +172,13 @@ class Timer extends React.Component {
             </Link>
             <cite>© made by team amid</cite>
           </TimerFlex>
+        </>
       );
     } else if (this.state.currentTimer === "breathing") {
       // console.log("breathing");
 
       return (
+        <>
           <TimerFlex>
             <DigitsOnTimer>
               {leftPad(this.props.breakHours.get("hours"))}:
@@ -197,7 +201,7 @@ class Timer extends React.Component {
             />
             <BreathInstruct />
 
-            <Link
+            <button
               className="switch-btn"
               to="/timer"
               onClick={() => {
@@ -206,14 +210,16 @@ class Timer extends React.Component {
               }}
             >
               Switch to Focus<i className="fas fa-step-forward"></i>
-            </Link>
+            </button>
             <cite>© made by team amid</cite>
           </TimerFlex>
+        </>
       );
     } else if (this.state.currentTimer === "unstructured") {
       // console.log("unstructured");
 
       return (
+        <>
           <TimerFlex>
             <DigitsOnTimer>
               {leftPad(this.props.breakHours.get("hours"))}:
@@ -234,11 +240,9 @@ class Timer extends React.Component {
               timerState={this.props.timerState}
               stopBreakTimer={this.props.stopBreakTimer}
               resetBreakTimer={this.props.resetBreakTimer}
-              focusSet={this.props.focusSet}
-              time={this.props.seconds}
             />
 
-            <Link
+            <button
               className="switch-btn"
               to="/timer"
               onClick={() => {
@@ -247,9 +251,10 @@ class Timer extends React.Component {
               }}
             >
               Switch to Focus<i className="fas fa-step-forward icon"></i>
-            </Link>
+            </button>
             <cite>© made by team amid</cite>
           </TimerFlex>
+        </>
       );
     }
   }
