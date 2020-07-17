@@ -16,14 +16,8 @@ const Title = styled.p`
   color: linear-gradient(0deg, #1b1b1b, #1b1b1b), url(amidcopy.png);
   opacity: 0.6;
   margin: 12px;
-`;
-
-const Cite = styled.cite`
-  position: absolute;
-
-  bottom: 64px;
-  color: linear-gradient(0deg, #1b1b1b, #1b1b1b), url(amidcopy.png);
-`;
+  text-align: center;
+  `;
 
 function ChoicePage(props) {
   const handleChangeTimer = (activity) => {
@@ -50,7 +44,7 @@ function ChoicePage(props) {
       >
         Breathing Exercise
       </Link>
-      <Cite>© made by team amid</Cite>
+      <cite>© made by team amid</cite>
     </PageWrapper>
   );
 }

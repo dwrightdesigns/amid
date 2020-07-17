@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import * as timerStates from "../../timerStates";
 
 const ButtonContainer = styled.div`
-  margin: 0 0 2rem 0;
+  margin: 0 0 1.5rem 0;
 `;
 
 const StyledButton = styled.button`
@@ -16,6 +16,10 @@ const StyledButton = styled.button`
   cursor: pointer;
   outline: none;
   transition: all 0.2s ease-in-out;
+  @media screen and (max-width:768px) {
+      width: 160px;
+      height: 160px;
+  }
 
   &:hover {
     border: 4px solid var(--light-color);
@@ -35,6 +39,10 @@ const CardFrame = styled(motion.button)`
   cursor: pointer;
   outline: none;
   border: 4px solid var(--light-color);
+  @media screen and (max-width:768px) {
+      width: 160px;
+      height: 160px;
+  }
 
   &:hover:before {
     content:"Pause";

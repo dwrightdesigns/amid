@@ -17,8 +17,6 @@ const Test = styled.path`
 
   animation-name: count;
   animation-direction: linear;
-  animation-duration: 60s;
-
 
   @keyframes count {
     to {
@@ -27,7 +25,6 @@ const Test = styled.path`
   }
 
   &:hover {
-    // stroke: var(--dark-color);
     opacity: 0.5;
   }
 `;
@@ -55,6 +52,19 @@ class BreakButton extends Component {
     this.getButton = this.getButton.bind(this);
   }
 
+  animation() {
+    const style = {
+      animation: `count ${this.props.focusSet.asSeconds()}s linear`,
+      // animationPlayState:
+      //   this.props.timerState === timerStates.RUNNING ? "running" : "paused",
+      // animationDelay:
+      //   ((this.props.focusSet.asSeconds() - this.props.time.asSeconds()) * -1) /
+      //     4 +
+      //   "s",
+    };
+    return style;
+  }
+
   getButton() {
     if (this.props.timerState === timerStates.NOT_SET)
       return (
@@ -69,21 +79,12 @@ class BreakButton extends Component {
           width={202}
           height={202}
           fill="none"
-          onClick={this.props.stopBreakTimer}
         >
           <Test
             d="M101 51c-27.614 0-50 22.386-50 50s22.386 50 50 50 50-22.386 50-50c0-26.438-22-50-50-50"
             stroke="var(--light-color)"
             strokeWidth={100}
-            style={{
-              animationDuration: `${
-                this.props.timerState === timerStates.RUNNING &&
-                this.props.isPlaying &&
-                this.props.stopBreakTimer
-                  ? this.props.breakSet * 60
-                  : 0
-              }s`,
-            }}
+            style={this.animation()}
           />
           <circle
             cx={101}

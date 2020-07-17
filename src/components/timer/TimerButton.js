@@ -48,7 +48,6 @@ const StyledButton = styled.button`
 class TimerButton extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
 
     this.getButton = this.getButton.bind(this);
   }
