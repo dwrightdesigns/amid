@@ -189,7 +189,6 @@ class App extends React.Component {
           <Route path="/about">
             <About />
           </Route>
-          <main>
             <Route path="/timer">
               <Timer
                 currentTimer={this.state.currentTimer}
@@ -212,7 +211,6 @@ class App extends React.Component {
                 focusSet={this.state.focusSet}
               />
             </Route>
-          </main>
         </Switch>
       </div>
     );

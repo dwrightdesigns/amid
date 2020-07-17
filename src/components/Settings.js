@@ -133,24 +133,22 @@ class Settings extends Component {
         )}
         <StyledButtons>
           <div className="left">
-            <a
-              href="#"
+            <button
               onClick={(e) => this.navigate(e, "/")}
               className="dark-btn button btn"
             >
               <i className="fas fa-question"></i>
               <h5>how to use</h5>
-            </a>
+            </button>
           </div>
           <div className="right">
-            <a
-              href="#"
+            <button
               onClick={(e) => this.navigate(e, "/about")}
               className="dark-btn button btn"
             >
               <i className="fas fa-info"></i>
               <h5>about</h5>
-            </a>
+            </button>
           </div>
         </StyledButtons>
         <StyledSave
@@ -300,9 +298,17 @@ const StyledButtons = styled.section`
 
   .left {
     margin: 0 0.5rem 0 0;
+
+    button {
+      border: none;
+    }
   }
   .right {
     margin: 0 0 0 0.5rem;
+
+    button {
+      border: none;
+    }
   }
 `;
 
